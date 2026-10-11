@@ -1548,3 +1548,26 @@ main ol:not([class])>li{margin-bottom:8px;padding-left:4px}
   .contact-box p{color:var(--ink-500);margin-bottom:18px;line-height:1.7}
   .contact-box a.mail{font-family:var(--font-mono);color:var(--green-900);text-decoration:none;font-weight:600}
   .contact-box a.mail:hover{text-decoration:underline}
+
+/* ============================================================
+   WS2 — night shift 2026-10-11: benchmarks §05 "Reported
+   elsewhere" context tables + note (benchmarks.html only).
+   APPENDED section: no existing rule above is modified.
+   Purpose: present competitor-reported figures in labelled
+   tables — never as bars on a shared axis with FD-1 results.
+   ============================================================ */
+.ctx-scroll{overflow-x:auto;margin-top:24px}
+table.ctx{min-width:640px}
+table.ctx .sub{display:block;font-size:.82rem;color:var(--ink-500)}
+table.ctx td.fig{font-family:var(--font-mono);font-size:.95rem;
+  white-space:nowrap;color:var(--ink-900)}
+table.ctx td.who{color:var(--ink-500)}
+.ctx-note{border:1px solid var(--paper-200);background:var(--paper-100);
+  border-radius:var(--r-12);padding:20px 24px;margin-top:28px;
+  max-width:var(--measure)}
+.ctx-note .nh{font-family:var(--font-mono);font-size:.72rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--green-900);
+  margin-bottom:8px}
+.ctx-note p{font-size:.95rem;color:var(--ink-700)}
+.ctx-price-h{margin-top:40px}
+@media(max-width:700px){table.ctx td.fig{white-space:normal}}
