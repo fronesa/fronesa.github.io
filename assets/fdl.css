@@ -95,8 +95,9 @@ p:last-child{margin-bottom:0}
 .hero .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
 .tag{font-family:var(--font-mono);font-size:.74rem;font-weight:600;
   display:inline-block;padding:8px 14px;border:1px solid var(--paper-300);border-radius:var(--r-full);
-  color:var(--ink-500)}
+  color:var(--ink-500);align-self:flex-start}
 .tag.on{border-color:var(--green-900);color:var(--green-900)}
+.tier .tag{background:var(--paper-100);border-color:var(--paper-200);color:var(--ink-700)}
 
 /* ---------- 7. Sections ---------- */
 section.chapter{padding-block:clamp(4rem,8vw,6rem);border-top:1px solid var(--paper-200)}
