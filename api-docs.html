@@ -243,7 +243,7 @@ function endpointSection(path, method, op, idx){
   const inputs = fields.map(function(f){
     let control;
     if(f.kind === "select"){
-      control = "<select id='" + f.id + "_" + idx + "' style='width:100%;font-family:JetBrains Mono,monospace;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--paper);color:var(--ink)'>" +
+      control = "<select id='" + f.id + "_" + idx + "' style='width:100%;font-family:var(--font-ui);font-size:13px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--paper);color:var(--ink)'>" +
         f.options.map(function(o){
           return "<option value='" + o + "'" + (o === f.dflt ? " selected" : "") + ">" + o + "</option>";
         }).join("") + "</select>";

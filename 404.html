@@ -3,91 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f4f1e8">
 <title>Not found — Fronesa</title>
 <meta name="robots" content="noindex">
-<meta property="og:image" content="assets/og-fronesa.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="apple-touch-icon" href="assets/favicon-180.png">
-<style>
-  @font-face{
-    font-family:'Fraunces';font-style:normal;font-weight:500 700;font-display:swap;
-    src:url('assets/fonts/fraunces-latin.woff2') format('woff2');
-  }
-  :root{
-    --paper:#f4f1e8;
-    --paper-2:#efeadd;
-    --card:#faf8f2;
-    --ink:#1b1813;
-    --mut:#57534a;
-    --faint:#7d7869;
-    --line:#d9d3bf;
-    --line-soft:#e5e0d0;
-    --green:#0f5132;
-    --green-deep:#0b3d26;
-    --brick:#a83c24;
-    --amber:#8a5a00;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    background:var(--paper);color:var(--ink);line-height:1.65;
-    -webkit-font-smoothing:antialiased}
-  .skip-link{position:absolute;left:-9999px;top:0;background:var(--green);color:#fff;
-    padding:8px 16px;z-index:100}
-  .skip-link:focus{left:0}
-  .wrap{max-width:860px;margin:0 auto;padding:72px 28px 96px}
-  .plate{background:var(--card);border:1px solid var(--line);border-radius:10px;
-    padding:44px 40px;margin-top:28px}
-  .figno{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--faint)}
-  h1{font-family:'Fraunces',Georgia,serif;font-weight:500;
-    font-size:clamp(38px,6vw,60px);letter-spacing:-.015em;margin:10px 0 14px}
-  h1 em{font-style:italic;color:var(--green)}
-  p.lede{color:var(--mut);font-size:17px;max-width:56ch;margin-bottom:8px}
-  figure{margin:30px 0 6px}
-  figure img{width:100%;height:auto;display:block;border:1px solid var(--line-soft);
-    border-radius:6px}
-  figcaption{margin-top:14px;padding-top:10px;border-top:1px solid var(--line-soft);
-    font-size:13.5px;color:var(--faint)}
-  .fig-no{font-family:ui-monospace,Menlo,monospace;font-size:11px;
-    letter-spacing:.1em;color:var(--mut)}
-  .cta-row{margin-top:30px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-  .btn{background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;
-    font-size:15px;border-radius:8px;padding:13px 28px;display:inline-block}
-  .btn:hover{background:var(--green-deep)}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-  .btn.ghost:hover{border-color:var(--ink)}
-  footer{margin-top:64px;border-top:1px solid var(--line);padding-top:20px;
-    font-size:13px;color:var(--faint);display:flex;justify-content:space-between;
-    flex-wrap:wrap;gap:10px}
-  footer .flock{display:inline-flex;align-items:center;gap:8px;font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:15px;color:var(--ink)}
-  footer a{color:var(--mut)}
-</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fdl.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<main class="wrap" id="main">
-  <div class="plate">
-    <span class="figno">404</span>
-    <h1>That page <em>doesn't exist.</em></h1>
-    <p class="lede">No fine print here either — you followed a link to somewhere we haven't built yet. The site is intentionally small while we're in early access.</p>
-    <figure>
-      <img src="assets/illustration-404.svg" alt="404 — not in the lab notes: a missing page from the lab notes" width="600" height="400">
-      <figcaption><span class="fig-no">FIG. —</span> Misfiled. It happens in the best-run labs.</figcaption>
-    </figure>
-    <div class="cta-row">
-      <a class="btn" href="index.html">Back to Fronesa</a>
-      <a class="btn ghost" href="try-it.html">Try the demo</a>
-    </div>
-  </div>
-  <footer>
-    <span class="flock"><img src="assets/brand/fronesa-mark.svg" alt="Fronesa mark" width="18" height="18"><span>Fronesa</span></span>
-    <span><a href="index.html">Home</a> · <a href="try-it.html">Demo</a> · <a href="mailto:surety.ai@proton.me">Contact</a></span>
-  </footer>
+<header class="topbar"><div class="wrap"><a class="brandmark" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><a class="nl" href="/try-it.html">Demo</a><a class="nl" href="/benchmarks.html">Benchmarks</a><a class="nl" href="/docs.html">Docs</a><a class="nl" href="/pricing.html">Pricing</a><a class="nl" href="/blog/">Blog</a><a class="nl" href="/about.html">About</a></div></header>
+<main id="main">
+<div class="wrap narrow" style="padding-top:64px;padding-bottom:64px;text-align:center">
+  <div class="kicker" style="text-align:center">404</div>
+  <h1 class="display-2">No decision here.</h1>
+  <p class="lede" style="margin-inline:auto">The page you asked for doesn't exist. The homepage and the demo do.</p>
+  <p><a class="btn-solid" href="/index.html">Back to Fronesa</a>
+  <a class="link-arrow" href="/try-it.html" style="margin-left:16px">Try the demo &rarr;</a></p>
+</div>
 </main>
+<footer class="sitefoot"><div class="wrap"><a class="fbrand" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><div class="flinks"><a href="/try-it.html">Demo</a><a href="/benchmarks.html">Benchmarks</a><a href="/docs.html">Docs</a><a href="/api-docs.html">API reference</a><a href="/pricing.html">Pricing</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div><p class="fine">Fronesa &mdash; decisions that learn. &copy; 2026.<br>Every number on this site is measured; nothing is promised.</p></div></footer>
 </body>
 </html>
