@@ -1458,3 +1458,79 @@ pre code{background:none;padding:0;border-radius:0;overflow-wrap:normal}
     padding-top:10px;padding-bottom:10px;row-gap:2px;overflow-x:visible}
   .brandmark{margin-right:0}
 }
+
+/* Base lists: a bare <ul>/<ol> in page content gets the FDL treatment —
+   hanging indent, brand square markers. Classed lists keep their own styles. */
+main ul:not([class]){list-style:none;margin:20px 0;padding:0}
+main ul:not([class])>li{position:relative;padding-left:20px;margin-bottom:8px;line-height:1.65}
+main ul:not([class])>li::before{content:"";position:absolute;left:2px;top:.6em;width:7px;height:7px;
+  background:var(--green-900)}
+main ol:not([class]){margin:20px 0;padding-left:28px;line-height:1.65}
+main ol:not([class])>li{margin-bottom:8px;padding-left:4px}
+
+/* ---------- Migrated page components (were per-page <style> blocks) ---------- */
+/* Homepage: live demo widget + loop diagram */
+/* Page-specific: live demo widget + loop diagram. FDL tokens only. */
+.demo{border:1px solid var(--paper-200);border-radius:var(--r-16);padding:24px;margin:36px 0 0;max-width:var(--measure)}
+.demo .dhead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.demo .dhead b{font-size:.95rem}
+.demo textarea{width:100%;min-height:88px;padding:14px 16px;border:1px solid var(--paper-300);border-radius:var(--r-12);font-family:var(--font-ui);font-size:.95rem;line-height:1.55;color:var(--ink-900);background:var(--paper-0);resize:vertical}
+.demo textarea:focus{outline:none;border-color:var(--green-900)}
+.demo .drow{display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.demo .dhint{font-size:.8rem;color:var(--ink-500)}
+.demo .dresult{margin-top:16px;display:none}
+.demo .dresult.show{display:block}
+.demo .dverdict{font-family:var(--font-display);font-weight:900;font-size:2rem;line-height:1;margin-bottom:4px}
+.demo .dverdict.spam{color:var(--red-700)}
+.demo .dverdict.ok{color:var(--green-900)}
+.demo .dmeta{font-family:var(--font-mono);font-size:.78rem;color:var(--ink-500);margin-top:10px}
+.demo .dmeta span{margin-right:16px}
+.demo .dspin{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-500)}
+/* Loop diagram: five steps, connected */
+.loop{display:flex;align-items:stretch;gap:0;margin:32px 0;max-width:100%}
+.lstep{flex:1;border:1px solid var(--paper-300);border-radius:var(--r-12);padding:16px 14px;min-width:0;background:var(--paper-0)}
+.lstep .ln{font-family:var(--font-mono);font-size:.68rem;font-weight:600;letter-spacing:.12em;color:var(--green-900);margin-bottom:6px}
+.lstep .lt{font-weight:700;font-size:.92rem;margin-bottom:4px}
+.lstep .ld{font-size:.8rem;color:var(--ink-500);line-height:1.5}
+.larrow{align-self:center;padding:0 6px;color:var(--green-900);font-weight:700;flex:none;font-size:1.1rem}
+.lwrap{position:relative}
+.lback{position:absolute;right:0;top:-28px;font-family:var(--font-mono);font-size:.72rem;color:var(--ink-500)}
+@media(max-width:760px){
+  .loop{flex-direction:column}
+  .larrow{transform:rotate(90deg);padding:6px 0;align-self:center}
+  .lback{position:static;margin-top:12px;text-align:right}
+}
+/* Before/after bars */
+.bars{margin:24px 0;max-width:var(--measure)}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-lab{font-family:var(--font-mono);font-size:.74rem;color:var(--ink-500);width:110px;flex:none}
+.bar-track{flex:1;height:22px;background:var(--paper-100);border-radius:var(--r-4);position:relative}
+.bar-fill{height:100%;border-radius:var(--r-4)}
+.bar-fill.before{background:var(--ink-300)}
+.bar-fill.after{background:var(--green-900)}
+.bar-val{font-family:var(--font-mono);font-size:.78rem;font-weight:600;width:64px;flex:none;text-align:right}
+/* About page components */
+/* About-page components only — all values from FDL tokens */
+  .belief{padding:28px 0;border-bottom:1px solid var(--paper-200)}
+  .belief:first-of-type{border-top:1px solid var(--paper-200);margin-top:32px}
+  .belief h3{font-family:var(--font-display);font-size:1.35rem;font-weight:700;
+    letter-spacing:-.01em;margin-bottom:8px}
+  .belief h3 .n{font-style:italic;color:var(--green-900);margin-right:10px}
+  .belief p{color:var(--ink-500);max-width:var(--measure);line-height:1.75}
+  .belief p strong{color:var(--ink-900)}
+  .not-list{margin-top:32px;list-style:none;padding:0}
+  .not-list li{padding:20px 0;border-bottom:1px solid var(--paper-200);
+    color:var(--ink-500);line-height:1.7;max-width:var(--measure)}
+  .not-list li:first-child{border-top:1px solid var(--paper-200)}
+  .not-list li strong{color:var(--ink-900)}
+  .not-list li .no{font-family:var(--font-mono);font-size:.78rem;color:var(--green-900);
+    display:block;margin-bottom:6px;letter-spacing:.06em}
+  .tbd{margin-top:32px;padding:28px;background:#fff;border:1px dashed var(--paper-300);
+    border-radius:var(--r-12);max-width:var(--measure)}
+  .tbd p{color:var(--ink-500);line-height:1.7;margin-top:10px}
+  .contact-box{margin-top:32px;padding:32px;background:var(--green-100);
+    border:1px solid var(--green-300);border-radius:var(--r-12);max-width:var(--measure)}
+  .contact-box h3{font-family:var(--font-display);font-size:1.35rem;font-weight:700;margin-bottom:8px}
+  .contact-box p{color:var(--ink-500);margin-bottom:18px;line-height:1.7}
+  .contact-box a.mail{font-family:var(--font-mono);color:var(--green-900);text-decoration:none;font-weight:600}
+  .contact-box a.mail:hover{text-decoration:underline}
