@@ -270,7 +270,14 @@ footer.sitefoot p.fine{font-family:var(--font-mono);font-size:.74rem;color:var(-
 .caveat{font-size:.85rem;color:var(--ink-500);font-style:italic;margin-top:16px;max-width:var(--measure)}
 .limit-note{font-size:.85rem;color:var(--ink-500);margin-top:12px;max-width:var(--measure)}
 .tiers{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:40px 0}
-.tier{border:1px solid var(--paper-200);border-radius:var(--r-16);padding:28px;background:#fff}
+.tier{border:1px solid var(--paper-200);border-radius:var(--r-16);padding:28px;background:#fff;
+  display:flex;flex-direction:column}
+.tier ul{list-style:none;margin:20px 0 24px;padding:0}
+.tier li{position:relative;padding-left:20px;margin-bottom:10px;font-size:.94rem;line-height:1.55}
+.tier li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;
+  background:var(--green-900)}
+.tier .cta{margin-top:auto;padding-top:8px}
+.tier .cta .btn{width:100%}
 .tier .price{font-family:var(--font-display);font-weight:700;font-size:2.2rem;
   letter-spacing:-0.02em;margin:12px 0}
 .tier.hl{border:2px solid var(--green-900)}
@@ -1253,10 +1260,6 @@ details.acc .acc-body{padding:0 0 20px;color:var(--ink-500);font-size:.92rem;max
   margin-top:20px;
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   letter-spacing:.04em;
-}
-
-.tier .cta {
-  margin-top:auto;
 }
 
 .tier .per {
