@@ -37,7 +37,7 @@
     <p>They are gone now. Verified by grep on 2026-10-06 ~09:20 +03: zero multiplier instances remain. What replaced them are absolute measured numbers:</p>
     <ul>
       <li>v0: <strong>0.38% error vs 1.71%</strong> against a frozen model (SMS spam, six simulated weeks, novel spam campaign injected mid-run)</li>
-      <li>v1: <strong>21ms median</strong> per decision (p95 22.56ms), ModernBERT-base + LoRA, calibration error 0.012</li>
+      <li>v1: <strong>21ms median</strong> per decision (p95 22.56ms), FD-1, calibration error 0.012</li>
       <li>v5: <strong>0.65% vs 1.69%</strong> with 10% of judge labels flipped</li>
       <li>v6: error fell from <strong>4.52% to 0.22%</strong> over twelve weeks and stayed there</li>
     </ul>
@@ -72,16 +72,7 @@
       </ol>
     </div>
 
-    <div class="blockers" role="note" aria-label="Pre-publish blockers">
-      <p class="label">Pre-publish blockers</p>
-      <ol>
-        <li>Sara/legal: confirm the four replacement numbers match the cited eval reports before this leaves draft.</li>
-        <li>Braa: the "ship-a-bad-claim-for-many-shifts" framing admits we shipped a bad claim for a long time. (See factual flag above — exact count disputed.)</li>
-        <li>Frontend: confirm the live served page matches the file (no CDN/cache drift).</li>
-        <li>Growth: zero-FP/0.9875 claims in migration materials remain publish-blocked — this post must not be read as a blanket honesty all-clear.</li>
-        <li>Content: do not publish while the 24h dry-run gate is still incomplete.</li>
-      </ol>
-    </div>
+    
 
     <p style="margin-top:24px;font-size:15px"><a href="index.html">← All honest-eval parts</a></p>
   </main>
