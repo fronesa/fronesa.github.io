@@ -73,15 +73,7 @@
       <p>Method + numbers: <code>decivia/docs/loop_drift_snapshot_2026-10-06.md</code> (round205-ml1, Yasmin ml5, 2026-10-06). Model: <code>decivia/models/spam-v1.pkl</code> (registry CURRENT). Harness: <code>scripts/loop/common.py::evaluate()</code>; data: SMSSpamCollection seed42_split, n=1116. Contamination context: <code>decivia/docs/seed_corpus_contamination_2026-10-06.md</code>; v4 HELDOUT recall 0.562: <code>decivia/eval/phishing_seed_template_v4_HELDOUT.jsonl</code>.</p>
     </div>
 
-    <div class="blockers" role="note" aria-label="Pre-publish blockers">
-      <p class="label">Pre-publish blockers</p>
-      <ol>
-        <li><strong>Engineering review</strong> of the drift-snapshot doc (Yasmin ml5 authored; independent re-run not yet done).</li>
-        <li><strong>Confirm the "0 FP" framing</strong> — 0 false positives on n=1,116 SMS test items [LAB], not a general claim. The v4 HELDOUT has 2 measured FPs on 32 items.</li>
-        <li><strong>Braa approval</strong> required before any publish.</li>
-        <li><strong>Timing note:</strong> if the contamination remediation (v4 guard, ledger hygiene) lands before publish, update the "still in there" line with its status.</li>
-      </ol>
-    </div>
+    
 
     <p style="margin-top:24px;font-size:15px"><a href="index.html">← All honest-eval parts</a></p>
   </main>
