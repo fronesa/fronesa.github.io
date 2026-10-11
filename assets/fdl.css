@@ -8,7 +8,7 @@
 /* Self-hosted Fraunces (latin) — zero third-party requests.
    Absolute path: works from every directory depth. */
 @font-face{
-  font-family:'Fraunces';font-style:normal;font-weight:500 600;font-display:swap;
+  font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;
   src:url('/assets/fonts/fraunces-latin.woff2') format('woff2');
 }
 
@@ -1262,16 +1262,9 @@ details.acc .acc-body{padding:0 0 20px;color:var(--ink-500);font-size:.92rem;max
   margin-bottom:18px;
 }
 
-.tier .price {
-  font-family:'JetBrains Mono',monospace;
-  font-size:15px;
-  margin-bottom:4px;
-  color:var(--ink-900);
-}
-
-.tier .price .big {
-  font-size:26px;
-  font-weight:500;
+.tier .price .unit{
+  font-family:var(--font-ui);font-size:.95rem;font-weight:600;
+  color:var(--ink-500);letter-spacing:0;margin-left:8px;
 }
 
 .tier.pop {
@@ -1450,3 +1443,11 @@ pre code{background:none;padding:0;border-radius:0;overflow-wrap:normal}
 
 /* Topbar: inner scrolls, page never overflows */
 .topbar{overflow:hidden}
+
+/* Topbar on narrow screens: two honest rows, nothing cut off.
+   No hidden overflow, no transparency tricks. */
+@media (max-width:640px){
+  .topbar .wrap{flex-wrap:wrap;height:auto;min-height:64px;
+    padding-top:10px;padding-bottom:10px;row-gap:2px;overflow-x:visible}
+  .brandmark{margin-right:0}
+}
