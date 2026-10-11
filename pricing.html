@@ -105,9 +105,9 @@
         call, not the outcome.</p>
       <div class="specwrap"><table>
         <tr><th>Call</th><th>Counts as</th><th>Why</th></tr>
-        <tr><td><strong>POST /decide</strong></td><td>1 decision</td><td>One text in, one decision out.</td></tr>
-        <tr><td><strong>POST /decide/batch</strong></td><td>1 decision per text</td><td>A 100-text batch is 100 decisions &mdash; each text is a full unit of model work.</td></tr>
-        <tr><td><strong>GET /health</strong>, <strong>GET /version</strong></td><td>0 decisions</td><td>Monitoring endpoints are always free.</td></tr>
+        <tr><td><code>POST /decide</code></td><td>1 decision</td><td>One text in, one decision out.</td></tr>
+        <tr><td><code>POST /decide/batch</code></td><td>1 decision per text</td><td>A 100-text batch is 100 decisions &mdash; each text is a full unit of model work.</td></tr>
+        <tr><td><code>GET /health</code>, <code>GET /version</code></td><td>0 decisions</td><td>Monitoring endpoints are always free.</td></tr>
       </table></div>
       <p class="tbl-note">Rate-limited and rejected calls (401, 429) are never billed.</p>
     </div>
