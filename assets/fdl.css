@@ -427,7 +427,9 @@ details.acc .acc-body{padding:0 0 20px;color:var(--ink-500);font-size:.92rem;max
 }
 
 .chip {
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
   padding:8px 16px;
   border:1px solid var(--paper-300);
   border-radius:var(--r-full);
@@ -828,6 +830,21 @@ details.acc .acc-body{padding:0 0 20px;color:var(--ink-500);font-size:.92rem;max
 
 .live-status.err {
   color:var(--red);
+}
+
+.live label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-300);display:block;margin:0 0 8px}
+.live textarea{width:100%;border:1px solid var(--paper-200);border-radius:8px;
+  font-family:var(--font-ui);font-size:15px;color:var(--ink-900);
+  padding:14px 16px;line-height:1.6;resize:vertical;background:var(--paper-0)}
+.live textarea:focus{outline:none;border-color:var(--green-900)}
+.live-row input{flex:1;min-width:200px;border:1px solid var(--paper-200);border-radius:8px;
+  font-family:var(--font-mono);font-size:13.5px;padding:12px 16px;
+  background:var(--paper-0);color:var(--ink-900)}
+.live-row input:focus{outline:none;border-color:var(--green-900)}
+@media(max-width:560px){
+  .live{padding:24px 20px}
+  .btn-inline{width:100%;padding:14px 26px}
 }
 
 .localnote {
