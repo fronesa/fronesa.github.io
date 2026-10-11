@@ -75,6 +75,11 @@ h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.45rem,4vw,2
   line-height:1.12;letter-spacing:-0.012em;overflow-wrap:break-word}
 h3{font-family:var(--font-display);font-weight:700;font-size:1.25rem;
   line-height:1.2;letter-spacing:-0.01em}
+/* Post illustration plate: abstract brand artwork, one per post */
+.post-fig{margin:36px 0;border:1px solid var(--paper-200);border-radius:var(--r-12);
+  overflow:hidden;background:var(--paper-100)}
+.post-fig img{display:block;width:100%;height:auto}
+.part .post-fig{margin:0 0 20px}
 
 /* ---------- 5. Topbar ---------- */
 .topbar{position:sticky;top:0;z-index:50;background:var(--paper-0);
