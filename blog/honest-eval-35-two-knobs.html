@@ -32,7 +32,7 @@
     <span>6 min read</span>
   </div>
 
-  <main id="article">
+  <div id="article">
     <h2>The apparent contradiction</h2>
     <p>Our latest measurement showed that raising the spam threshold from 0.5 to 0.6 on our phishing held-out set makes the model strictly worse: recall drops from 0.5625 to 0.4375 while the false-positive count doesn't move (2 either way). That looks like a contradiction with an earlier finding that a 0.6 floor is a free lunch — more uncertain spam routed to human review, zero extra ham.</p>
     <p>Both are true. They're different knobs. The free lunch was an <em>escalation</em> floor. The recall loss is a <em>classification</em> threshold. Confusing them would have us either shipping a threshold that silently eats recall, or dismissing an escalation setting that genuinely works.</p>
@@ -75,7 +75,7 @@
     
 
     <p style="margin-top:24px;font-size:15px"><a href="index.html">← All honest-eval parts</a></p>
-  </main>
+  </div>
 </div>
 </main>
 <footer class="sitefoot"><div class="wrap"><a class="fbrand" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><div class="flinks"><a href="/try-it.html">Demo</a><a href="/benchmarks.html">Benchmarks</a><a href="/docs.html">Docs</a><a href="/api-docs.html">API reference</a><a href="/pricing.html">Pricing</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div><p class="fine">Fronesa &mdash; decisions that learn. &copy; 2026.<br>Every number on this site is measured; nothing is promised.</p></div></footer>
