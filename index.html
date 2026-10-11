@@ -17,47 +17,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/fdl.css">
-<style>
-/* Page-specific: live demo widget + loop diagram. FDL tokens only. */
-.demo{border:1px solid var(--paper-200);border-radius:var(--r-16);padding:24px;margin:36px 0 0;max-width:var(--measure)}
-.demo .dhead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.demo .dhead b{font-size:.95rem}
-.demo textarea{width:100%;min-height:88px;padding:14px 16px;border:1px solid var(--paper-300);border-radius:var(--r-12);font-family:var(--font-ui);font-size:.95rem;line-height:1.55;color:var(--ink-900);background:var(--paper-0);resize:vertical}
-.demo textarea:focus{outline:none;border-color:var(--green-900)}
-.demo .drow{display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap}
-.demo .dhint{font-size:.8rem;color:var(--ink-500)}
-.demo .dresult{margin-top:16px;display:none}
-.demo .dresult.show{display:block}
-.demo .dverdict{font-family:var(--font-display);font-weight:900;font-size:2rem;line-height:1;margin-bottom:4px}
-.demo .dverdict.spam{color:var(--red-700)}
-.demo .dverdict.ok{color:var(--green-900)}
-.demo .dmeta{font-family:var(--font-mono);font-size:.78rem;color:var(--ink-500);margin-top:10px}
-.demo .dmeta span{margin-right:16px}
-.demo .dspin{font-family:var(--font-mono);font-size:.8rem;color:var(--ink-500)}
-/* Loop diagram: five steps, connected */
-.loop{display:flex;align-items:stretch;gap:0;margin:32px 0;max-width:100%}
-.lstep{flex:1;border:1px solid var(--paper-300);border-radius:var(--r-12);padding:16px 14px;min-width:0;background:var(--paper-0)}
-.lstep .ln{font-family:var(--font-mono);font-size:.68rem;font-weight:600;letter-spacing:.12em;color:var(--green-900);margin-bottom:6px}
-.lstep .lt{font-weight:700;font-size:.92rem;margin-bottom:4px}
-.lstep .ld{font-size:.8rem;color:var(--ink-500);line-height:1.5}
-.larrow{align-self:center;padding:0 6px;color:var(--green-900);font-weight:700;flex:none;font-size:1.1rem}
-.lwrap{position:relative}
-.lback{position:absolute;right:0;top:-28px;font-family:var(--font-mono);font-size:.72rem;color:var(--ink-500)}
-@media(max-width:760px){
-  .loop{flex-direction:column}
-  .larrow{transform:rotate(90deg);padding:6px 0;align-self:center}
-  .lback{position:static;margin-top:12px;text-align:right}
-}
-/* Before/after bars */
-.bars{margin:24px 0;max-width:var(--measure)}
-.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.bar-lab{font-family:var(--font-mono);font-size:.74rem;color:var(--ink-500);width:110px;flex:none}
-.bar-track{flex:1;height:22px;background:var(--paper-100);border-radius:var(--r-4);position:relative}
-.bar-fill{height:100%;border-radius:var(--r-4)}
-.bar-fill.before{background:var(--ink-300)}
-.bar-fill.after{background:var(--green-900)}
-.bar-val{font-family:var(--font-mono);font-size:.78rem;font-weight:600;width:64px;flex:none;text-align:right}
-</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>

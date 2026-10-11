@@ -9,8 +9,8 @@
 <meta property="og:site_name" content="Fronesa">
 <meta property="og:title" content="FAQ — Fronesa">
 <meta property="og:description" content="Honest answers about the Fronesa decision API: product, technical details, pricing, security, and the company behind it.">
-<meta property="og:url" content="https://suretyai.github.io/fronesa/faq.html">
-<meta property="og:image" content="https://suretyai.github.io/fronesa/assets/og-fronesa.png">
+<meta property="og:url" content="https://suretyai.github.io/faq.html">
+<meta property="og:image" content="https://suretyai.github.io/assets/og-fronesa.png">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,7 @@
     <h2>Product</h2>
     <p class="group-sub">What Fronesa is, and what it isn't.</p>
 
-    <details>
+    <details class="acc">
       <summary>What does Fronesa do?</summary>
       <div class="answer">
         <p>Fronesa is a decision API. You send it a piece of text; it returns a decision (for example <code>spam</code> or <code>ham</code>), a confidence score between 0 and 1, and an <strong>escalation flag</strong>. When the flag is set, the model is explicitly saying "I don't know" — you're expected to route that case to a human reviewer, not act on it automatically.</p>
@@ -42,7 +42,7 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>How is this different from a plain text classifier?</summary>
       <div class="answer">
         <p>Three things a raw classifier doesn't give you:</p>
@@ -54,14 +54,14 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What languages are supported?</summary>
       <div class="answer">
         <p><strong>English.</strong> The production model is trained on English text; other languages are not supported yet. Multilingual support is on the roadmap but has no date.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What does "escalated" mean, exactly?</summary>
       <div class="answer">
         <p>It means the model's confidence fell below its escalation threshold — the model is telling you it isn't sure. The contract is simple: <strong>do not auto-act on escalated decisions</strong>. Route them to human review (or a stronger model), and optionally send the reviewer's verdict back through <code>POST /review</code> so the loop learns from it.</p>
@@ -69,7 +69,7 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What kinds of decisions can the API make?</summary>
       <div class="answer">
         <p>Today: <strong>yes/no, multiple choice, and scored decisions</strong> on English text. Spam detection is one demo vertical. The decision vocabulary is model-specific and will grow as we ship new models — each response tells you which model version produced it, so you'll always know what you're getting.</p>
@@ -81,7 +81,7 @@
     <h2>Technical</h2>
     <p class="group-sub">Integration details, verified against our API spec.</p>
 
-    <details>
+    <details class="acc">
       <summary>How do I authenticate?</summary>
       <div class="answer">
         <p>With a <strong>Bearer API key</strong> in the <code>Authorization</code> header:</p>
@@ -90,7 +90,7 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What are the rate limits?</summary>
       <div class="answer">
         <p><strong>100 requests per minute per key</strong> on <code>/decide</code> and <code>/decide/batch</code>. Exceeding it returns <code>429</code> with a <code>Retry-After</code> header telling you how long to wait.</p>
@@ -98,7 +98,7 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>How fast is it?</summary>
       <div class="answer">
         <p>About <strong>~2 ms per decision on a warm container</strong> (server-measured; a 100-text batch runs in roughly 4–5 ms end to end). These are lab measurements on our infrastructure, not a guaranteed SLA — see below.</p>
@@ -106,28 +106,28 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What are cold starts — why is the first request slow?</summary>
       <div class="answer">
         <p>The API runs on free-tier hosting, which puts the container to sleep after about 15 idle minutes. The first request after that has to boot the whole stack — up to ~90 seconds. Subsequent requests answer in ~0.1 s until the next idle period. Nothing is broken when this happens; it's the documented behavior of the free tier. If your use case can't tolerate a slow first request, warm the service with an unauthenticated <code>GET /health</code> call before you need it.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>Do you offer an SLA?</summary>
       <div class="answer">
         <p><strong>No.</strong> We don't promise uptime or latency targets today — the API runs on free-tier hosting, and it would be dishonest to sell guarantees on infrastructure we don't control. If SLAs matter to you, tell us; it's one of the things paid hosting would unlock.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What happens when the API escalates — do I get notified?</summary>
       <div class="answer">
         <p>The escalation flag comes back <strong>in the API response itself</strong> — your code checks <code>escalated</code> and routes accordingly. Push notifications (webhooks) for escalated items are <strong>on the roadmap but not shipped yet</strong>.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>Is there an SDK?</summary>
       <div class="answer">
         <p>Yes — a <strong>Python SDK</strong> (<code>fronesa</code>) with sync and async clients, retries with backoff, and a typed exception hierarchy. It's currently in pre-release while we finish publishing it to PyPI; the <a href="sdk-docs.html">SDK docs</a> page tracks its status honestly. REST works with any language today — see <a href="getting-started.html">Getting started</a>.</p>
@@ -139,7 +139,7 @@
     <h2>Pricing</h2>
     <p class="group-sub">What things cost, and what counts.</p>
 
-    <details>
+    <details class="acc">
       <summary>How am I billed?</summary>
       <div class="answer">
         <p>Per <strong>decision</strong>, in monthly tiers. Current plan (see the <a href="pricing.html">pricing page</a>):</p>
@@ -153,21 +153,21 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What counts as a decision?</summary>
       <div class="answer">
         <p>One <code>/decide</code> call = one decision. One <code>/decide/batch</code> call with N texts = N decisions. Rejected calls (<code>401</code>, <code>429</code>) are <strong>never billed</strong>. Escalated decisions count the same as confident ones — the model still did the work.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What are the free tier limits?</summary>
       <div class="answer">
         <p>Sandbox gives you <strong>10,000 decisions per month</strong>, one model version, and community support. No credit card, no expiry — but rate limits still apply (100 requests/minute per key).</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>Can I cancel?</summary>
       <div class="answer">
         <p>Growth and Scale are <strong>month-to-month</strong> — cancel anytime, no lock-in. Enterprise plans are annual by negotiation.</p>
@@ -179,7 +179,7 @@
     <h2>Security &amp; privacy</h2>
     <p class="group-sub">What we do with your data, and what we don't.</p>
 
-    <details>
+    <details class="acc">
       <summary>Do you store the texts I send?</summary>
       <div class="answer">
         <p><strong>No.</strong> API request logs record metadata only — timestamp, endpoint, status, latency, and counts. They never contain your message contents or your raw API key (keys are stored as one-way hashes). Raw request logs are kept 30 days; aggregated daily summaries are kept 12 months.</p>
@@ -187,28 +187,28 @@
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>Do you train your models on my data?</summary>
       <div class="answer">
         <p><strong>Never without your written consent.</strong> The learning loop only trains on review decisions you explicitly submit through <code>POST /review</code> — that endpoint is the opt-in path. Your ordinary <code>/decide</code> traffic is never used for training.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>Where is data processed?</summary>
       <div class="answer">
         <p>On our hosted API infrastructure (currently cloud hosting; the exact region isn't something we've published yet — ask us if it matters for your compliance review). We don't offer regional data residency today — if that's a requirement for you, say so; it's on the Enterprise roadmap.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>What certifications do you hold?</summary>
       <div class="answer">
         <p><strong>None yet.</strong> No SOC 2, no ISO 27001, no independent penetration test, no bug bounty. Our <a href="security.html">security page</a> documents what we actually do (key handling, fail-closed auth, error hygiene) instead of implying assurances we haven't earned.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>How do I report a vulnerability?</summary>
       <div class="answer">
         <p>Email <a href="mailto:surety.ai@proton.me">surety.ai@proton.me</a> with the details. We'll acknowledge within two business days and keep you posted on the fix. Please don't publish the details before we've had a chance to patch.</p>
@@ -220,21 +220,21 @@
     <h2>Company</h2>
     <p class="group-sub">Who's behind Fronesa.</p>
 
-    <details>
+    <details class="acc">
       <summary>Who builds Fronesa?</summary>
       <div class="answer">
         <p>Fronesa is built by a small independent team working on it full-time. We're early — no funding announcements, no employee count to brag about, just the product and its measured numbers.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>Are you a registered company?</summary>
       <div class="answer">
         <p><strong>Not yet.</strong> We're operating as an independent project while we validate with design partners; formal entity setup comes before we sign commercial contracts. That means today we can run free pilots, but we can't invoice or sign paid agreements yet.</p>
       </div>
     </details>
 
-    <details>
+    <details class="acc">
       <summary>How do I contact you?</summary>
       <div class="answer">
         <p><a href="mailto:surety.ai@proton.me">surety.ai@proton.me</a> — read by a human, answered within two business days. For pilot or partnership conversations, tell us about your review queue and we'll tell you honestly whether we're a fit.</p>
