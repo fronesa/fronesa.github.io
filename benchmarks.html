@@ -176,23 +176,49 @@
     <p class="caveat">Spam is one demo vertical, not the product.</p>
   </section>
 
-  <section id="limits">
-    <div class="secnum">05 &mdash; Limits</div>
-    <h2 class="display-2">Where we&rsquo;re <em>weak.</em></h2>
-    <div class="alert alert-warn"><b>Honest limits</b>MMLU 0.24 &middot; TruthfulQA 0.32 &middot; Banking77 0.21 &mdash; below what we&rsquo;d ship for those tasks.<br>English only. Lab numbers, not your data. No certifications.</div>
-  </section>
-
   <section id="market">
-    <div class="secnum">06 &mdash; The market</div>
+    <div class="secnum">05 &mdash; The market</div>
     <h2 class="display-2">What the market <em>reports.</em></h2>
-    <p class="caveat">No vendor publishes on our 7-benchmark panel, so there is no shared scoreboard. What each vendor actually reports, with provenance.</p>
-    <div class="cards">
-      <div class="card"><div class="ct">Jev 1.13 &middot; TypeSafe</div><div class="bignum">n/a</div><div class="cd">vendor publishes no public benchmark scores<br><span>independent: MMLU-Pro 82.7% &middot; $0.042/M in</span></div></div>
-      <div class="card"><div class="ct">Decision-1 &middot; Microsoft</div><div class="bignum">83.5%</div><div class="cd">avg accuracy &middot; 36 benchmarks &middot; vendor-reported<br><span>no per-benchmark breakdown &middot; $0.042/M in</span></div></div>
-      <div class="card"><div class="ct">Decider v1.1 &middot; Perplexity</div><div class="bignum">62.75</div><div class="cd">HF Decision Index 0.3 &middot; independent board<br><span>calibration error 0.071 &middot; $0.02/M in</span></div></div>
-      <div class="card"><div class="ct">Decisions API &middot; OpenAI</div><div class="bignum">n/a</div><div class="cd">no published accuracy or calibration figures<br><span>public beta &middot; $0.10/M in</span></div></div>
+    <div class="narrow">
+    <svg viewBox="0 0 460 360" width="100%" role="img" aria-label="Bar chart of headline accuracy each decision-API vendor reports: FD-1 92.0 percent on MNLI (own lab), Perplexity Decider v1.1 85.7 percent on its 11-benchmark panel (vendor-reported), Microsoft Decision-1 83.5 percent 36-benchmark average (vendor-reported), Jev 1.13 82.7 percent on MMLU-Pro (independent community run). OpenAI publishes no figures.">
+      <title>Headline accuracy by vendor, with panel provenance</title>
+      <g stroke="#EAE4D2" stroke-width="1">
+        <line x1="170" y1="8" x2="170" y2="330"/>
+        <line x1="236.25" y1="8" x2="236.25" y2="330"/>
+        <line x1="302.5" y1="8" x2="302.5" y2="330"/>
+        <line x1="368.75" y1="8" x2="368.75" y2="330"/>
+        <line x1="435" y1="8" x2="435" y2="330"/>
+      </g>
+      <g font-family="'JetBrains Mono',ui-monospace,monospace" font-size="10" fill="#8A8474" text-anchor="middle">
+        <text x="170" y="346">0</text><text x="236.25" y="346">25</text><text x="302.5" y="346">50</text><text x="368.75" y="346">75</text><text x="435" y="346">100%</text>
+      </g>
+      <!-- FD-1 -->
+      <text x="162" y="40" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">FD-1 &middot; Fronesa</text>
+      <text x="162" y="57" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">MNLI &middot; our lab, n=300</text>
+      <rect x="170" y="30" width="243.8" height="22" fill="#0F5132"/>
+      <text x="419.8" y="46" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">92.0%</text>
+      <!-- Perplexity -->
+      <text x="162" y="104" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">Decider v1.1 &middot; Perplexity</text>
+      <text x="162" y="121" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">11-bench panel &middot; vendor</text>
+      <rect x="170" y="94" width="227.1" height="22" fill="#16150F"/>
+      <text x="403.1" y="110" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">85.7%</text>
+      <!-- Microsoft -->
+      <text x="162" y="168" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">Decision-1 &middot; Microsoft</text>
+      <text x="162" y="185" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">36-bench avg &middot; vendor</text>
+      <rect x="170" y="158" width="221.3" height="22" fill="#16150F"/>
+      <text x="397.3" y="174" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">83.5%</text>
+      <!-- Jev -->
+      <text x="162" y="232" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">Jev 1.13 &middot; TypeSafe</text>
+      <text x="162" y="249" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">MMLU-Pro &middot; independent</text>
+      <rect x="170" y="222" width="219.1" height="22" fill="#16150F"/>
+      <text x="395.1" y="238" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">82.7%</text>
+      <!-- OpenAI -->
+      <text x="162" y="296" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">Decisions API &middot; OpenAI</text>
+      <text x="162" y="313" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">public beta</text>
+      <text x="170" y="302" font-family="'Inter',-apple-system,sans-serif" font-size="12" font-style="italic" fill="#8A8474">no published figures</text>
+    </svg>
     </div>
-    <p class="caveat">FD-1&rsquo;s seven numbers are above &mdash; lab-measured, n=300, seed 7. Vendor figures are vendor figures; independent figures are independent. Different benchmarks, different protocols.</p>
+    <p class="caveat">Each vendor&rsquo;s headline accuracy, labeled with the panel it was reported on. Different panels, different protocols &mdash; no shared scoreboard exists.<br>Input pricing: Perplexity $0.02/M &middot; Jev $0.042/M &middot; Microsoft $0.042/M &middot; OpenAI $0.10/M.</p>
   </section>
 
   <div class="close">
