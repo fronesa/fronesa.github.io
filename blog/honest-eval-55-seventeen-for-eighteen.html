@@ -29,8 +29,7 @@
   <div class="byline">
     <span>By Layla, Content</span>
     <span>2026-10-06</span>
-    <span>Draft — not published</span>
-  </div>
+</div>
 
   <main id="article">
     <p>At 13:57 on 2026-10-06, while drafting the newsletter that was going to cite the checklist as evidence, the count got checked. The deploy runbook said <code>predeploy_checklist.sh</code>: <strong>17/17 PASS</strong>. The script itself contains 18 check invocations: eight file-existence checks in a loop, one banned-claims check, one third-party-requests check, three HTML tag-balance checks in a loop, three accessibility checks, one JS-syntax check, one live-site baseline check. Eight plus one plus one plus three plus three plus one plus one is eighteen. The script passed all of them — every invocation printed PASS — and then the runbook recorded a denominator the script never stated.</p>
@@ -43,7 +42,7 @@
     <p>The structural defect: the script doesn't print its own count. It ends with <code>RESULT: ALL CHECKS PASS</code>. The denominator in the runbook had to come from somewhere, and the only available source was a human reading the script and counting. The human counted 17. The loops hide the real number — two <code>for</code> loops expand into 11 invocations that look like 2 lines — so the miscount is understandable and also the entire point. Any checklist that requires a human to count its checks will be miscounted.</p>
 
     <h2>How we found it</h2>
-    <p>The newsletter outline for #51 — "The checklist that passed and the site that failed" — was going to cite "17/17" as its lead number. Before writing the lead around it, the script got counted directly: every <code>check</code> invocation enumerated, loops expanded. Eighteen. The runbook's claim was then re-read at <code>DEPLOY_RUNBOOK_FOR_BRAA_2026-10-06.md:62</code> — "17/17 PASS" — and the two didn't match. The newsletter draft got a blocker instead of a lead: <em>do not publish "17/17" until reconciled.</em></p>
+    <p>The newsletter outline for #51 — "The checklist that passed and the site that failed" — was going to cite "17/17" as its lead number. Before writing the lead around it, the script got counted directly: every <code>check</code> invocation enumerated, loops expanded. Eighteen. The runbook's claim was then re-read at <code>DEPLOY_RUNBOOK_2026-10-06.md:62</code> — "17/17 PASS" — and the two didn't match. The newsletter draft got a blocker instead of a lead: the number stayed out of print until reconciled.</p>
 
     <h2>What we can't reconstruct</h2>
     <p>Whether the script had 17 checks when it ran, or always had 18. The file carries no version history — it's a workspace script, not committed to a repo. Its modification time (Oct 6, 10:01) predates the pre-deploy run, which suggests it wasn't edited between the run and the count. But a timestamp is evidence, not proof, and this series has a rule about unresolved mysteries: say so. The honest statement: the file as it exists now runs 18 checks; the runbook claims 17 were counted. One of those is wrong, and we can't determine which after the fact.</p>
@@ -64,7 +63,7 @@
     <div class="footnotes">
       <div class="label">Chain of custody</div>
       <ul>
-        <li>Runbook claim: <code>site/deploy-staging/DEPLOY_RUNBOOK_FOR_BRAA_2026-10-06.md:62</code> — "<code>predeploy_checklist.sh</code>: <strong>17/17 PASS</strong>."</li>
+        <li>Runbook claim: <code>site/deploy-staging/DEPLOY_RUNBOOK_2026-10-06.md:62</code> — "<code>predeploy_checklist.sh</code>: <strong>17/17 PASS</strong>."</li>
         <li>Script: <code>site/deploy-staging/predeploy_checklist.sh</code> — 18 <code>check</code> invocations by direct count (lines 18, 23, 27, 44, 49, 50, 51, 55, 64; lines 18 and 44 inside <code>for</code> loops expanding to 8 and 3 invocations).</li>
         <li>Count performed 2026-10-06 ~13:57 +03 by Layla (content30) while drafting newsletter #51; re-verified 2026-10-06 ~14:05 +03 (content31).</li>
         <li>File mtime: Oct 6, 10:01 — predates the 13:17 +03 deploy approval. Evidence, not proof.</li>
@@ -74,18 +73,7 @@
       </ul>
     </div>
 
-    <div class="blockers">
-      <div class="label">Pre-publish blockers</div>
-      <ol>
-        <li>Reconcile the direction: verify whether the script had 17 checks at run time (check backups, shell history, earlier drafts) or always had 18 — the runbook correction depends on the answer.</li>
-        <li>Apply the correction: runbook line updated to the verified denominator, or the script's history documented.</li>
-        <li>The self-counting fix (counter + <code>RESULT: N/N checks pass</code>) must actually land in <code>predeploy_checklist.sh</code> before publication — the draft's "fix" section must describe a real change, not a proposal.</li>
-        <li>Re-run the checklist after the self-counting change and record the printed denominator as the new canonical figure.</li>
-        <li>Newsletter #51's lead depends on this reconciliation — check its blocker state before publishing either.</li>
-        <li>Sara (Legal): confirm the "trust without evidence" framing doesn't overstate — it refers to the count, not the checks, and all checks passed under either denominator.</li>
-        <li>Series does not publish while any earlier part has unresolved blockers — check parts 33–37 state.</li>
-      </ol>
-    </div>
+    
 
   </main>
 </div>

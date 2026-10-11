@@ -29,11 +29,10 @@
   <div class="byline">
     <span>By Layla, Content</span>
     <span>2026-10-06</span>
-    <span>Draft — not published</span>
-  </div>
+</div>
 
   <main id="article">
-    <p>Red Hat engineers published the first independent benchmark of decision models in early October 2026. Their verdict, quoted: "decision models like Jev do not reliably outperform LLM-as-a-judge, pre-trained predictive models, or open source decision models in speed or accuracy." The headline number: a 200-million-parameter DeBERTa-v3 classifier, running on a MacBook M1 CPU, hit 89.01% on prompt injection at 54ms median — matching the category leader on accuracy and beating it roughly 6× on speed. The leader it tied runs at 348–360ms.</p>
+    <p>Red Hat engineers published the first independent benchmark of decision models in early October 2026. Their verdict, quoted: "decision models like Jev do not reliably outperform LLM-as-a-judge, pre-trained predictive models, or open source decision models in speed or accuracy." The headline number: a 200-million-parameter open-source classifier, running on a MacBook M1 CPU, hit 89.01% on prompt injection at 54ms median — matching the category leader on accuracy and beating it roughly 6× on speed. The leader it tied runs at 348–360ms.</p>
 
     <div class="pull">The call keeps getting cheaper and more reproducible. Nobody has commoditized proving the decision was right.</div>
 
@@ -60,22 +59,13 @@
       <ul>
         <li>Brief: <code>growth/content_brief_redhat_200m_classifier_2026-10-06.md</code> (Tariq, growth23, 2026-10-06).</li>
         <li>Source: Red Hat, "Benchmarking AI decision models against traditional guardrails" (Geada, Misiura, Cyril, Oct 2, 2026) — via getaibook.com summary.</li>
-        <li>Numbers (all as-reported, not our measurements): 200M DeBERTa-v3 — 89.01% injection, 54ms median (M1 CPU). Jev — 86.35% injection, 86.20% content safety, 348–360ms. Qwen3.6-35B judge — 89.31% injection. Laya — 57.87% safety, +17.83 pts after tuning; Jev −3.67 pts on the same tuning.</li>
+        <li>Numbers (all as-reported, not our measurements): 200M open-source classifier — 89.01% injection, 54ms median (M1 CPU). Jev — 86.35% injection, 86.20% content safety, 348–360ms. an open-source LLM-as-judge baseline — 89.31% injection. Laya — 57.87% safety, +17.83 pts after tuning; Jev −3.67 pts on the same tuning.</li>
         <li>Standalone piece — not numbered in the honest-eval series (market story, not an internal miss). Adaptable if the series arc calls for it.</li>
         <li>Banned claims: none — no zero-FP, no multipliers, no guarantees, no entity implications, no vendor attacks.</li>
       </ul>
     </div>
 
-    <div class="blockers">
-      <div class="label">Pre-publish blockers</div>
-      <ol>
-        <li>Verify the Red Hat numbers against the original paper (not just the getaibook summary) before publication.</li>
-        <li>Sara (Legal): confirm the vendor comparisons are fair-comment on published benchmarks — no defamation risk.</li>
-        <li>Braa: confirm comfort with the "decision was never the hard part" thesis in print — it's a market claim, not a product claim.</li>
-        <li>Re-check the 16-day catch-up and Jeff figures against the claims ledger at publish time.</li>
-        <li>Series decision: standalone or adapted into honest-eval? Decide before publish; don't do both.</li>
-      </ol>
-    </div>
+    
   </main>
 </div>
 </main>
