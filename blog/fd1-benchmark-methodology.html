@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<!-- DRAFT — NOT DEPLOYED. Publication draft, WS-O 2026-10-12.
-     Every figure below is taken from the live public benchmarks page
-     (https://fronesa.github.io/benchmarks.html), fetched 2026-10-12.
-     Profit-safety note: drafts/fd1-benchmark-methodology.NOTES.md
-     ILLUSTRATION: not yet generated — brief in the figure comment below. -->
+<!-- Published 2026-10-12 (WS-O). Revised 2026-10-12 (WS-R): protocol
+     descriptions pinned to the harness records (WS-Q VARIANTS.md) —
+     per-benchmark task form, split, sample composition, scoring rule.
+     Every figure is taken from the live public benchmarks page.
+     Profit-safety exclusions unchanged: no bundle codename, no build or
+     training method, no per-item results. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -52,11 +53,11 @@
 
     <p>The model under test is FD-1 in its Tier-1 configuration, the configuration the public demo runs. It was run, unchanged, over seven public benchmarks chosen to cover the three decision shapes the API serves: entailment, yes/no, and multiple choice.</p>
 
-    <p>Every figure comes from the same harness, the same items, and a single fixed seed (7). Each benchmark contributes 300 items, except MMLU, where we use a six-subject subset of 228 items. There is no per-benchmark tuning: a benchmark the model does badly on is reported exactly as it came out. Chance on a <em>k</em>-way choice is 1/<em>k</em>, and the benchmarks page draws that line on every chart, so a score can be read against guessing, not just against other vendors.</p>
+    <p>Every figure comes from the same harness, the same items, a single fixed seed (7), and no task-specific training &mdash; every panel is zero-shot. Each benchmark contributes 300 items, except MMLU, where the run covers the entire validation pool of six subjects &mdash; 228 items, named in the results table below. The harness&rsquo;s exact variant of each benchmark (its task form, split, and scoring rule) is stated per benchmark on the benchmarks page; where a variant differs from the canonical task &mdash; MNLI run as a binary decision, TruthfulQA with sampled distractors &mdash; the difference is stated, never smoothed over. There is no per-benchmark tuning: a benchmark the model does badly on is reported exactly as it came out. Chance on a <em>k</em>-way choice is 1/<em>k</em> (TruthfulQA&rsquo;s option count varies by item, so its sample chance level is 0.277), and the benchmarks page draws that line on every chart, so a score can be read against guessing, not just against other vendors.</p>
 
     <h2>Two numbers per benchmark.</h2>
 
-    <p>We report accuracy and expected calibration error (ECE) together, always. Accuracy says how often the decision was right. ECE says whether the confidence meant what it claimed: predictions are grouped by stated confidence, each group&rsquo;s mean confidence is compared with its empirical accuracy, and ECE is the weighted average gap. A model can be accurate and still badly calibrated — confident exactly when it is wrong — and for a decision that triggers an action, the second failure is the expensive one.</p>
+    <p>We report accuracy and expected calibration error (ECE) together, always. Accuracy says how often the decision was right. ECE says whether the confidence meant what it claimed: predictions are grouped into 10 equal-width confidence bins, each bin&rsquo;s mean confidence is compared with its empirical accuracy, and ECE is the weighted average gap. For multiple-choice panels the confidence is the winning option&rsquo;s probability &mdash; top-label ECE, the standard form. A model can be accurate and still badly calibrated — confident exactly when it is wrong — and for a decision that triggers an action, the second failure is the expensive one.</p>
 
     <p>Our calibration policy is strict: <strong>ECE is reported uncalibrated, at temperature 1.0</strong> — the model&rsquo;s raw confidence, before any rescaling. A rescaled figure would look better on several panels below. We do not publish rescaled calibration as the model&rsquo;s calibration, because the number a caller&rsquo;s system experiences, if they read our confidence at all, should be the number we measured, not the number we could manufacture.</p>
 
@@ -67,26 +68,28 @@
         <tr><th>Benchmark</th><th>Task</th><th>Accuracy</th><th>ECE (T=1.0)</th><th>n</th></tr>
       </thead>
       <tbody>
-        <tr><td>MNLI</td><td>Entailment</td><td>0.920</td><td>0.057</td><td>300</td></tr>
-        <tr><td>AG News</td><td>Multiple choice, 4 topics</td><td>0.543</td><td>0.300</td><td>300</td></tr>
-        <tr><td>BoolQ</td><td>Yes/no</td><td>0.530</td><td>0.307</td><td>300</td></tr>
-        <tr><td>Banking77</td><td>Multiple choice, 77 intents</td><td>0.213</td><td>0.100</td><td>300</td></tr>
-        <tr><td>HellaSwag</td><td>Multiple choice, 4 endings</td><td>0.333</td><td>0.516</td><td>300</td></tr>
-        <tr><td>TruthfulQA</td><td>Multiple choice, best of 4</td><td>0.317</td><td>0.494</td><td>300</td></tr>
-        <tr><td>MMLU</td><td>Multiple choice, 6-subject subset</td><td>0.241</td><td>0.505</td><td>228</td></tr>
+        <tr><td>MNLI</td><td>Binary entailment-vs-contradiction (neutral excluded), matched validation split</td><td>0.920</td><td>0.057</td><td>300</td></tr>
+        <tr><td>AG News</td><td>Multiple choice, 4 topics, test split</td><td>0.543</td><td>0.300</td><td>300</td></tr>
+        <tr><td>BoolQ</td><td>Yes/no, validation split &mdash; sample runs 180 yes / 120 no</td><td>0.530</td><td>0.307</td><td>300</td></tr>
+        <tr><td>Banking77</td><td>Multiple choice, all 77 intents, strict exact match, test split</td><td>0.213</td><td>0.100</td><td>300</td></tr>
+        <tr><td>HellaSwag</td><td>Multiple choice, 4 endings, validation split</td><td>0.333</td><td>0.516</td><td>300</td></tr>
+        <tr><td>TruthfulQA</td><td>MC1-style: best answer vs up to 3 sampled incorrect answers</td><td>0.317</td><td>0.494</td><td>300</td></tr>
+        <tr><td>MMLU</td><td>Multiple choice, 6-subject validation pool (all 228 items)</td><td>0.241</td><td>0.505</td><td>228</td></tr>
       </tbody>
     </table>
 
-    <p>Read honestly, this is a mixed table, and we would rather explain it than average it away. On MNLI — the entailment task closest to the decisions FD-1 is built for — accuracy is 0.920 with an ECE of 0.057: when the model says 80%, it is right about 80% of the time. On AG News and BoolQ it is right about half the time, with calibration to match (ECE &asymp; 0.30): usable signal, honestly labelled as uncertain. On Banking77, 0.213 accuracy across 77 intents is far above the 1-in-77 chance line and far below anything we would automate on its own. On HellaSwag, TruthfulQA, and MMLU the model is near chance — and its ECE near 0.5 says its confidence there does not track its accuracy at all. Those three panels are the strongest argument in this note: a decision API that knows its confidence is meaningless on a class of inputs must say so, per call. Ours does, through the escalation flag, which the companion note covers.</p>
+    <p>Read honestly, this is a mixed table, and we would rather explain it than average it away. On MNLI — the entailment task closest to the decisions FD-1 is built for — accuracy is 0.920 with an ECE of 0.057: when the model says 80%, it is right about 80% of the time. That MNLI figure is a binary variant — neutral pairs are excluded, so the task is entailment-vs-contradiction against a 50% chance line, not the canonical three-way task. On AG News it is right about half the time, with calibration to match (ECE &asymp; 0.30): usable signal, honestly labelled as uncertain. BoolQ needs its context stated: the sample runs 60% yes, so an always-yes baseline scores 0.600 — and FD-1&rsquo;s 0.530 sits below it. On Banking77, 0.213 accuracy under strict exact match across all 77 intents is far above the 1-in-77 chance line and far below anything we would automate on its own. On HellaSwag and MMLU the model is near chance, and TruthfulQA&rsquo;s 0.317 sits only modestly above its 0.277 sample chance level — and on all three, ECE near 0.5 says the model&rsquo;s confidence there does not track its accuracy at all. Those three panels are the strongest argument in this note: a decision API that knows its confidence is meaningless on a class of inputs must say so, per call. Ours does, through the escalation flag, which the companion note covers.</p>
 
     <div class="caveat">
       <span class="lbl">WHAT WE WON&rsquo;T CLAIM</span>
-      <p style="margin-bottom:0">That this table ranks FD-1 against any other product. Other vendors&rsquo; headline figures were produced on different panels under different protocols; the benchmarks page keeps those figures in a separate, sourced table for exactly that reason, and FD-1 does not appear in it. If a shared protocol ever exists — same items, same harness, every product — we will publish that comparison and let it say what it says.</p>
+      <p style="margin-bottom:0">That this table ranks FD-1 against any other product. The benchmarks page now sets every published figure for these seven benchmarks beside FD-1&rsquo;s — but each in its own benchmark&rsquo;s table, labelled with who measured it and under what protocol, because a figure without its protocol is not a comparison. If a shared protocol ever exists — same items, same harness, every product — we will publish that comparison and let it say what it says.</p>
     </div>
 
     <h2>Limitations.</h2>
 
     <p>Three, stated plainly. First, resolution: at n=300, a percentage point is three items; treat the second decimal as a reading, not a verdict. Second, one seed and one run: seed 7 is fixed and published so the figures are reproducible, not because it is the kindest draw. Third, these are public benchmarks — proxies for the decisions callers actually send, not measurements of them. A panel score tells you how the model behaves on a known distribution; your distribution is yours, which is why the demo runs the real model on your text.</p>
+
+    <p>And the variants themselves, since a variant is a limitation when it differs from the canonical task: MNLI is run as a binary decision with neutral pairs excluded, not the standard three-way classification. TruthfulQA&rsquo;s distractors are sampled &mdash; at most three incorrect answers per item &mdash; rather than the full choice set canonical MC1 scores. MMLU&rsquo;s 228 items are a six-subject convenience pool on the validation split (miscellaneous alone is 37.7% of it), not a representative draw from the 57-subject test set. BoolQ&rsquo;s sample is unbalanced because its source split is; no balancing was applied. Each variant is labelled wherever its figure appears.</p>
 
     <p>For serving context: median decision latency in the lab is 21&nbsp;ms (p95 22.6&nbsp;ms; GPU, n=200, batch 1, warm). And in the one vertical where FD-1 is task-trained rather than zero-shot — the spam demo vertical — the held-out error is 1.25% with ECE 0.046 (n=1,116, seed 42). The gap between that row and the zero-shot panels is the honest summary of this note: a decision model is strong where it has been trained and measured, and its published job everywhere else is to know the difference.</p>
 
