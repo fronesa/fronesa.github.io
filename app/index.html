@@ -71,7 +71,7 @@ h1{font-family:var(--fd);font-weight:700;font-size:clamp(2rem,6vw,3rem);letter-s
 .vrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .vrow .grow{flex:1;min-width:200px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-.chip{font-family:var(--fm);font-size:.68rem;border:1px solid var(--paper-3);border-radius:999px;padding:5px 12px;color:var(--ink-2);background:none;cursor:pointer;min-height:32px}
+.chip{font-family:var(--fm);font-size:.68rem;border:1px solid var(--paper-3);border-radius:999px;padding:5px 12px;color:var(--ink-2);background:none;cursor:pointer;min-height:44px}
 button.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .badge{font-family:var(--fm);font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 12px}
 .b-green{background:var(--g100);color:var(--g900)}
@@ -99,6 +99,9 @@ html[data-theme=dark] .btn-p{background:var(--g500);color:#0A1F14}
 table{width:100%;border-collapse:collapse;font-size:.9rem}
 th{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink);color:var(--ink-3)}
 td{padding:14px 12px;border-bottom:1px solid var(--paper-3);vertical-align:top}
+/* Wide tables scroll inside their card instead of narrowing to the
+   screen (the FDL .specwrap pattern, WS-E M-3). */
+.tablescroll{overflow-x:auto;max-width:100%}
 .mono{font-family:var(--fm);font-size:.8rem}
 /* code */
 pre{background:var(--paper-2);border:1px solid var(--paper-3);border-radius:12px;padding:20px;overflow-x:auto;font-family:var(--fm);font-size:.82rem;line-height:1.7;margin:16px 0}
@@ -190,14 +193,14 @@ footer p{font-family:var(--fm);font-size:.72rem;color:var(--ink-4);line-height:2
 <section class="view" id="v-proof">
   <h1>Proof<span class="sq">■</span></h1>
   <p class="sub">Precise numbers, always with context. Measured in public.</p>
-  <div class="card"><table>
+  <div class="card"><div class="tablescroll"><table>
     <tr><th>Metric</th><th>Fronesa</th><th>Baseline</th><th>Method</th></tr>
     <tr><td><b>Loop error</b></td><td class="mono"><b>0.38%</b></td><td class="mono">1.71%</td><td class="mono">n=2,400 · seed 7 · 10% judge noise</td></tr>
     <tr><td><b>Spam catch</b></td><td class="mono"><b>4.52% → 0.22%</b></td><td class="mono">—</td><td class="mono">miss rate, same set</td></tr>
     <tr><td><b>False positives</b></td><td class="mono"><b>15.1% → 12.2%</b></td><td class="mono">—</td><td class="mono">ham flagged as spam</td></tr>
     <tr><td><b>Latency p50</b></td><td class="mono"><b>21.02 ms</b></td><td class="mono">—</td><td class="mono">GPU · production</td></tr>
     <tr><td><b>Latency p50 / p95</b></td><td class="mono"><b>293 / 834 ms</b></td><td class="mono">—</td><td class="mono">CPU fallback</td></tr>
-  </table></div>
+  </table></div></div>
   <p><a class="btn btn-s" href="https://fronesa.github.io/lab-numbers.html">Read the lab notes</a></p>
 </section>
 
@@ -213,10 +216,10 @@ footer p{font-family:var(--fm);font-size:.72rem;color:var(--ink-4);line-height:2
   -H "Authorization: Bearer $FRONESA_KEY" \
   -H "Content-Type: application/json" \
   -d '{"text": "WINNER!! claim your prize now"}'</pre>
-  <table><tr><th>Endpoint</th><th>Method</th><th>Use</th></tr>
+  <div class="tablescroll"><table><tr><th>Endpoint</th><th>Method</th><th>Use</th></tr>
   <tr><td class="mono">/decide</td><td class="mono">POST</td><td>Verdict + confidence + reason</td></tr>
   <tr><td class="mono">/labels</td><td class="mono">POST</td><td>Submit corrections (your model only)</td></tr>
-  <tr><td class="mono">/health</td><td class="mono">GET</td><td>Uptime probe, no auth</td></tr></table></div>
+  <tr><td class="mono">/health</td><td class="mono">GET</td><td>Uptime probe, no auth</td></tr></table></div></div>
 </section>
 
 <!-- SETTINGS -->
