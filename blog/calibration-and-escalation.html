@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- DRAFT — NOT DEPLOYED. Publication draft, WS-O 2026-10-12.
+     Material: the live public benchmarks page (ECE figures) and the public API
+     reference (the escalation contract and the confidence field's own documented
+     calibration notes), fetched 2026-10-12. Nothing internal is sourced.
+     Profit-safety note: drafts/calibration-and-escalation.NOTES.md
+     ILLUSTRATION: not yet generated — brief in the figure comment below. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calibration, measured honestly — and escalation for everything it can&rsquo;t cover. — Fronesa</title>
+<meta name="description" content="How Fronesa measures calibration (ECE, reported uncalibrated), why calibration is a property of a distribution and not a model, and the escalation contract that routes uncertain decisions to a human.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Calibration, measured honestly — and escalation for everything it can&rsquo;t cover.">
+<meta property="og:description" content="How we measure ECE, why calibration belongs to a distribution, and the escalation contract that routes uncertain decisions to a human.">
+<meta property="og:url" content="https://fronesa.github.io/blog/calibration-and-escalation.html">
+<meta property="og:image" content="https://fronesa.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calibration, measured honestly — and escalation for everything it can&rsquo;t cover.">
+<meta name="twitter:description" content="How we measure ECE, why calibration belongs to a distribution, and the escalation contract that routes uncertain decisions to a human.">
+<meta name="twitter:image" content="https://fronesa.github.io/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fdl.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar"><div class="wrap"><a class="brandmark" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><a class="nl" href="/index.html">Home</a><a class="nl" href="/try-it.html">Demo</a><a class="nl" href="/benchmarks.html">Benchmarks</a><a class="nl" href="/docs.html">Docs</a><a class="nl" href="/pricing.html">Pricing</a><a class="nl active" href="/blog/">Blog</a><a class="nl" href="/about.html">About</a></div></header>
+<main id="main">
+
+<div>
+<article class="article">
+  <div class="wrap">
+
+    <p class="kicker"><span class="sq" aria-hidden="true"></span>FRONESA &middot; RESEARCH &middot; OCTOBER 2026</p>
+
+    <h1>Calibration, measured honestly — and escalation for everything it can&rsquo;t cover<span class="sq" aria-hidden="true"></span></h1>
+
+    <p class="dek">A decision API returns a confidence with every decision. That number is a promise about frequency: of all the calls made at 80% confidence, about 80% should be right. This note explains how we measure whether the promise holds, what the measurements say — including where they fail — and the mechanism we ship for the cases where no confidence value should be trusted at all: escalation to a human.</p>
+<!-- ILLUSTRATION BRIEF (generation separate): abstract engraved line-flow on cream,
+     moving left to right, gradually separating into two streams — a dense, steady
+     stream continuing straight, a sparser stream curving away — divided by a single
+     deep-green line; no text, no numbers, no objects. Planned path below. -->
+<figure class="post-fig"><img src="/assets/img/blog/calibration-and-escalation.webp" alt="Abstract line flow separating into two streams at a green divide"></figure>
+
+    <p>Accuracy is the metric everyone publishes, and for an automated decision it is the less important half. A system that acts on a model&rsquo;s output needs to know when <em>not</em> to act, and that knowledge lives in the confidence score — if the score is honest. Calibration is the discipline of checking that it is.</p>
+
+    <hr class="rule">
+
+    <h2>How we measure it.</h2>
+
+    <p>We use expected calibration error. Take every prediction on a benchmark, group the predictions into bins by their stated confidence, and in each bin compare the mean confidence with the fraction that were actually correct. ECE is the average of those gaps, weighted by bin size. Zero is a model whose 80% means 80%. A large ECE means the confidence is decoration.</p>
+
+    <p>One policy governs every ECE figure we publish: it is measured on the model&rsquo;s raw output, uncalibrated, at temperature 1.0. Rescaling a model&rsquo;s confidence after the fact can make ECE look far better on a test set; publishing that figure as the model&rsquo;s calibration would be claiming a property the deployed model does not have. What we print is what the model does.</p>
+
+    <h2>What the measurements say.</h2>
+
+    <p>FD-1&rsquo;s ECE across its seven published benchmarks spans almost the whole scale: 0.057 on MNLI, 0.100 on Banking77, around 0.30 on AG News and BoolQ — and roughly 0.5 on HellaSwag, TruthfulQA, and MMLU, where the model is also near chance. The pattern is the finding. Calibration is not a constant a model carries from task to task; it is a property of the model <em>on a distribution</em>. Where FD-1 is strong, its confidence is meaningful. Where it is weak, its confidence is not merely optimistic — it is uninformative, and no threshold drawn after the fact changes that on inputs the model cannot read.</p>
+
+    <p>Our own API reference says the same thing at the level of a single integration, in the documentation of the confidence field itself: well-calibrated on SMS-style inputs (ECE &asymp; 0.05), less reliable on phishing-style inputs (ECE &asymp; 0.21, as of 2026-10-06) — with the instruction to treat high-confidence decisions on unfamiliar text with caution and to prefer the escalation flag for routing. We would rather print that in the reference, where an integrator will actually meet it, than discover it for them in production.</p>
+
+    <div class="caveat">
+      <span class="lbl">WHAT WE WON&rsquo;T CLAIM</span>
+      <p style="margin-bottom:0">That a single ECE number certifies a model. ECE is a summary: it depends on binning, it averages away the worst bins, and it is measured on a benchmark distribution, not on yours. It is a floor for honesty, not a guarantee.</p>
+    </div>
+
+    <h2>The escalation contract.</h2>
+
+    <p>Because calibration can fail by distribution, the API does not ask callers to interpret raw confidence for themselves. Every decision response carries three things together: the <code>decision</code>, the <code>confidence</code> in [0,&nbsp;1], and a boolean, <code>escalated</code>. The flag is true when the model&rsquo;s confidence falls below its escalation threshold — the point at which the model is explicitly saying it does not know. The contract, stated in the API reference and treated there as load-bearing, is one sentence: <strong>when <code>escalated</code> is true, do not auto-act on the decision; route the case to human review.</strong></p>
+
+    <p>The contract holds at the edges as well. In a batch request, an item that cannot be decided does not fail the batch: its slot returns <code>decision: "error"</code> with <code>escalated: true</code>, and the batch as a whole still succeeds — uncertainty is routed, not thrown. For callers who wire review queues directly, escalated decisions can fire a signed <code>decision.escalated</code> webhook event, so the hand-off to a human is an event a system can subscribe to, not a field someone has to remember to check.</p>
+
+    <p>Where the model is task-trained for the caller&rsquo;s distribution, this machinery mostly stays quiet — in our spam demo vertical, the held-out ECE is 0.046 (n=1,116), and escalation is the exception. Everywhere else, escalation is not an admission of a weak model. It is the mechanism by which a decision system stays honest at the boundary of what it can read: the decisions it is sure of proceed, and the rest arrive in front of a person with the uncertainty attached, instead of being acted on in silence.</p>
+
+    <h2>Limitations.</h2>
+
+    <p>Escalation moves cost; it does not remove it. Every escalated case is a case a reviewer must read, and a threshold set for safety can flood a queue — which is why the escalation rate, not just the error rate, is a number we watch and publish in our lab notes. Calibration also drifts: a model well-calibrated on last quarter&rsquo;s inputs can be miscalibrated on this quarter&rsquo;s, and the only defence is re-measurement on current data, published the same way. And a threshold cannot rescue a distribution the model cannot read at all — on those, the honest behaviour is a high escalation rate, and the honest report is the one that says so.</p>
+
+    <p class="signoff">&mdash; Fronesa, October 2026<span class="sq" aria-hidden="true"></span></p>
+
+  </div>
+</article>
+</div>
+</main>
+<footer class="sitefoot"><div class="wrap"><a class="fbrand" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><div class="flinks"><a href="/try-it.html">Demo</a><a href="/benchmarks.html">Benchmarks</a><a href="/docs.html">Docs</a><a href="/api-docs.html">API reference</a><a href="/pricing.html">Pricing</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div><p class="fine">Fronesa &mdash; decisions that learn. &copy; 2026.<br>Every number on this site is measured; nothing is promised.</p></div></footer>
+</body>
+</html>

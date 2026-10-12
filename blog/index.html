@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Honest eval — the series — Fronesa</title>
-<meta name="description" content="We write about the misses we catch, not just the ones we prevent. Every part of Fronesa's honest-eval series.">
+<title>Research &amp; lab notes — Fronesa</title>
+<meta name="description" content="Fronesa's publications: methods, measurements, and results — every figure traceable to a public benchmark run or a published method.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Honest eval — the series — Fronesa">
-<meta property="og:description" content="We write about the misses we catch, not just the ones we prevent. Every part of Fronesa's honest-eval series.">
+<meta property="og:title" content="Research &amp; lab notes — Fronesa">
+<meta property="og:description" content="Fronesa's publications: methods, measurements, and results — every figure traceable to a public benchmark run or a published method.">
 <meta property="og:image" content="https://fronesa.github.io/og-image.png">
 <meta property="og:url" content="https://fronesa.github.io/blog/">
 <meta property="og:image:width" content="1200">
@@ -23,209 +23,36 @@
 <header class="topbar"><div class="wrap"><a class="brandmark" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><a class="nl" href="/index.html">Home</a><a class="nl" href="/try-it.html">Demo</a><a class="nl" href="/benchmarks.html">Benchmarks</a><a class="nl" href="/docs.html">Docs</a><a class="nl" href="/pricing.html">Pricing</a><a class="nl active" href="/blog/">Blog</a><a class="nl" href="/about.html">About</a></div></header>
 <main id="main">
 <div class="wrap">
-  <p class="kicker">The series</p>
-  <h1>Honest eval</h1>
-  <p class="standfirst">We write about the misses we catch, not just the ones we prevent. If we fixed it quietly, it doesn't belong here. If we caught ourselves, it does.</p>
+  <p class="kicker">Publications</p>
+  <h1>Research &amp; lab notes</h1>
+  <p class="standfirst">What we publish here is what a lab publishes: methods, measurements, and results a reader can check. Every figure traces back to a public benchmark run or a stated method — the current FD-1 results live on the <a href="/benchmarks.html">benchmarks page</a>, and the notes below explain how numbers like those are produced and what they do and don&rsquo;t mean.</p>
 
   <div id="parts">
     <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-57-figure-gate.webp" alt="The diagram showed a decision the gate wouldn't make"></figure>
-      <p class="num">Part 40</p>
-      <h2><a href="honest-eval-57-figure-gate.html">The diagram showed a decision the gate wouldn't make.</a></h2>
-      <p>Two figures showed 0.80 confidence with a decided SPAM label against a 0.90 gate. Caught before shipping; fixed to 0.95. Visual claims are claims.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
+<figure class="post-fig"><img src="/assets/img/blog/fd1-benchmark-methodology.webp" alt="How FD-1 is measured: seven benchmarks, one harness, no panel averages."></figure>
+      <p class="num">Research note</p>
+      <h2><a href="/blog/fd1-benchmark-methodology.html">How FD-1 is measured: seven benchmarks, one harness, no panel averages.</a></h2>
+      <p>Exactly how FD-1&rsquo;s published figures were produced &mdash; the benchmarks, the sample sizes, the seed, and the calibration policy &mdash; and the results, including the ones that are not flattering.</p>
+      <p class="meta">October 2026</p>
     </article>
-
     <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-56-taste-gate.webp" alt="The checklist can't taste"></figure>
-      <p class="num">Part 39</p>
-      <h2><a href="honest-eval-56-taste-gate.html">The checklist can't taste.</a></h2>
-      <p>Deploy checklist passed every check; our CEO failed the site on taste eight minutes later. Verification vs judgment.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
+<figure class="post-fig"><img src="/assets/img/blog/calibration-and-escalation.webp" alt="Calibration, measured honestly — and escalation for everything it can&rsquo;t cover."></figure>
+      <p class="num">Research note</p>
+      <h2><a href="/blog/calibration-and-escalation.html">Calibration, measured honestly — and escalation for everything it can&rsquo;t cover.</a></h2>
+      <p>How we measure whether a confidence score keeps its promise, what the measurements say &mdash; including where they fail &mdash; and the escalation mechanism for the cases no confidence value should be trusted with.</p>
+      <p class="meta">October 2026</p>
     </article>
-
     <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-55-seventeen-for-eighteen.webp" alt="The checklist went 17-for-18"></figure>
-      <p class="num">Part 38</p>
-      <h2><a href="honest-eval-55-seventeen-for-eighteen.html">The checklist went 17-for-18.</a></h2>
-      <p>The pre-deploy checklist ran green before the 13:17 deploy. The runbook recorded 17/17 PASS. Forty minutes later someone counted the script and found 18. The checklist never printed its own denominator.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-54-five-for-eight.webp" alt="The deploy went 5-for-8"></figure>
-      <p class="num">Part 37</p>
-      <h2><a href="honest-eval-54-five-for-eight.html">The deploy went 5-for-8.</a></h2>
-      <p>The deploy verification caught three assets 404ing at 13:26. We filed the deploy as incomplete. By 13:52 it was 8-for-8 without anyone touching anything — and the CEO was about to reject the whole design anyway.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-53-ai-style-measured.webp" alt="What 'AI style' actually means, measured"></figure>
-      <p class="num">Part 36</p>
-      <h2><a href="honest-eval-53-ai-style-measured.html">What 'AI style' actually means, measured.</a></h2>
-      <p>Our CEO said the site had "A LOT OF AI STYLE." We built a checklist: 60 clichés, 26 templates, one paragraph rule.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-52-invented-work.webp" alt="The queue ran dry"></figure>
-      <p class="num">Part 35</p>
-      <h2><a href="honest-eval-52-invented-work.html">The queue ran dry.</a></h2>
-      <p>Our task queue hit zero dispatchable items. By the standing rule — never idle — everything became invented.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-51-word-budget.webp" alt="The 400-word budget"></figure>
-      <p class="num">Part 34</p>
-      <h2><a href="honest-eval-51-word-budget.html">The 400-word budget.</a></h2>
-      <p>The redesign got rejected for being a text wall. Content's response: cut 84% of the words — and discover the cuts were drawing.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-50-design-rejection.webp" alt="We shipped the redesign. The CEO called it AI slop"></figure>
-      <p class="num">Part 33</p>
-      <h2><a href="honest-eval-50-design-rejection.html">We shipped the redesign. The CEO called it AI slop.</a></h2>
-      <p>Seventeen predeploy checks green. Eight files live. Zero banned claims. And the whole thing still looked generated.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-49-sigterm-saga.webp" alt="We kept killing our own daemon"></figure>
-      <p class="num">Part 32</p>
-      <h2><a href="honest-eval-49-sigterm-saga.html">We kept killing our own daemon.</a></h2>
-      <p>Nine restarts in one day. No crashes — our watchdog, our supervisors, and our own workers did it.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-48-dryrun-bugs.webp" alt="We found three bugs in our own dry run before launch"></figure>
-      <p class="num">Part 31</p>
-      <h2><a href="honest-eval-48-dryrun-bugs.html">We found three bugs in our own dry run before launch.</a></h2>
-      <p>Filtered logging hid 92% of traffic, the spam label could never fire, and the watchdog killed healthy daemons.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-47-fictional-timestamps.webp" alt="We caught ourselves writing fictional timestamps"></figure>
-      <p class="num">Part 30</p>
-      <h2><a href="honest-eval-47-fictional-timestamps.html">We caught ourselves writing fictional timestamps.</a></h2>
-      <p>Two shifts logged time that hadn't happened yet — and corrected it in public, in the same log.</p>
-      <p class="meta">October 6, 2026 · 4 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-46-templates-approved.webp" alt="The templates are approved. The rewrites wait for one signature"></figure>
-      <p class="num">Part 29</p>
-      <h2><a href="honest-eval-46-templates-approved.html">The templates are approved. The rewrites wait for one signature.</a></h2>
-      <p>Legal approved the replacement language for all 58 instances of our bad number. Four templates, binding rules — and none applied yet, because the final signature is the CEO's.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-44-audit-trilogy.webp" alt="We found 58 instances of our own bad number"></figure>
-      <p class="num">Part 27</p>
-      <h2><a href="honest-eval-44-audit-trilogy.html">We found 58 instances of our own bad number.</a></h2>
-      <p>We mapped every place our company asserts "zero false positives" or "0.9875 accuracy." We're publishing the map before the fixes.</p>
-      <p class="meta">October 6, 2026 · 7 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-43-tighten-first.webp" alt="We chose to make the model stricter instead of smarter"></figure>
-      <p class="num">Part 26</p>
-      <h2><a href="honest-eval-43-tighten-first.html">We chose to make the model stricter instead of smarter.</a></h2>
-      <p>The CEO chose tighten-first over retrain — because retraining on current data would have made the model worse.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-42-multiplier-retirement.webp" alt="We killed the multipliers. Here's what replaced them"></figure>
-      <p class="num">Part 25</p>
-      <h2><a href="honest-eval-42-multiplier-retirement.html">We killed the multipliers. Here's what replaced them.</a></h2>
-      <p>Four banned multiplier claims were live on our landing page. They're gone — replaced by absolute measured numbers.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-41-import-order.webp" alt="Our test suite was green because of import order"></figure>
-      <p class="num">Part 24</p>
-      <h2><a href="honest-eval-41-import-order.html">Our test suite was green because of import order.</a></h2>
-      <p>230 tests passed because pytest collects files alphabetically. Change the import order and four tests fail with 401s.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-40-zero-revenue.webp" alt="A scoreboard with zero revenue"></figure>
-      <p class="num">Part 23</p>
-      <h2><a href="honest-eval-40-zero-revenue.html">A scoreboard with zero revenue.</a></h2>
-      <p>The company's internal scoreboard reads $0 revenue, 0 customers, 0 contracts. We keep it that way on purpose.</p>
-      <p class="meta">October 6, 2026 · 4 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-39-paired-labels.webp" alt="What 270 paired labels actually buys"></figure>
-      <p class="num">Part 22</p>
-      <h2><a href="honest-eval-39-paired-labels.html">What 270 paired labels actually buys.</a></h2>
-      <p>TIGHTEN-FIRST says no retraining on skewed data. The condition: 270 new paired labels — 90 phishing, 180 legitimate.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-38-reviewer-instrument.webp" alt="The machine can escalate. Judgment needs its own instrument"></figure>
-      <p class="num">Part 21</p>
-      <h2><a href="honest-eval-38-reviewer-instrument.html">The machine can escalate. Judgment needs its own instrument.</a></h2>
-      <p>The dry-run daemon escalates everything it isn't sure about. The human verdict count stands at exactly zero — by design.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-37-drift-snapshot.webp" alt="The model didn't move. That's the news"></figure>
-      <p class="num">Part 20</p>
-      <h2><a href="honest-eval-37-drift-snapshot.html">The model didn't move. That's the news.</a></h2>
-      <p>Our phishing test corpora were contaminated. We re-ran the SMS baseline. It didn't move — and that's exactly the result we needed.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-36-budget-gap.webp" alt="The collection budget funds zero of our worst errors"></figure>
-      <p class="num">Part 19</p>
-      <h2><a href="honest-eval-36-budget-gap.html">The collection budget funds zero of our worst errors.</a></h2>
-      <p>The 270-label budget allocates zero items to notification twins — the category with the model's two most confident mistakes.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/honest-eval-35-two-knobs.webp" alt="Two knobs, not one: the escalation floor is not the classification threshold"></figure>
-      <p class="num">Part 18</p>
-      <h2><a href="honest-eval-35-two-knobs.html">Two knobs, not one: the escalation floor is not the classification threshold.</a></h2>
-      <p>Raising the threshold 0.5→0.6 loses 12.5 points of recall. But a 0.6 escalation floor is a free lunch. Different knobs.</p>
-      <p class="meta">October 6, 2026 · 6 min read</p>
+<figure class="post-fig"><img src="/assets/img/blog/lab-numbers.webp" alt="Why we publish our lab numbers"></figure>
+      <p class="num">Lab note</p>
+      <h2><a href="/lab-numbers.html">Why we publish our lab numbers.</a></h2>
+      <p>Every figure on our homepage has an address: a versioned lab run, with the same harness, the same data, and a frozen baseline. What we measured, how, and what we won&rsquo;t claim.</p>
+      <p class="meta">October 2026</p>
     </article>
   </div>
 
-  <p class="kicker">Field notes</p>
-  <div id="fieldnotes">
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/redhat-200m-classifier.webp" alt="The 200M classifier that tied the leader"></figure>
-      <p class="num">Field note</p>
-      <h2><a href="redhat-200m-classifier.html">The 200M classifier that tied the leader.</a></h2>
-      <p>Red Hat's independent benchmark: a 200-million-parameter classifier running on a laptop CPU matched the category leader on accuracy — and beat it 6× on speed.</p>
-      <p class="meta">October 6, 2026 · 4 min read</p>
-    </article>
-
-    <article class="part">
-<figure class="post-fig"><img src="/assets/img/blog/vinted-sar-playbook.webp" alt="The sellers who SAR'd the algorithm"></figure>
-      <p class="num">Field note</p>
-      <h2><a href="vinted-sar-playbook.html">The sellers who SAR'd the algorithm.</a></h2>
-      <p>Vinted's banned sellers didn't just complain about automated bans. They built a legal playbook to extract the automation's logic — one Subject Access Request at a time.</p>
-      <p class="meta">October 6, 2026 · 5 min read</p>
-    </article>
-  </div>
-
-  <p class="more">The honest-eval series runs to 22 parts, all published here, with field notes alongside. New parts are added as the work is done — nothing on this page is a draft.</p>
-  <p style="margin-bottom:64px"><a href="../index.html">← Back to Fronesa</a></p>
+  <p class="more">This index is short because the standard is narrow: a note appears here when there is a method or a measurement worth publishing, and not before. When the numbers change, we update them; when a run disagrees with the story, we publish the run.</p>
+  <p style="margin-bottom:64px"><a href="../index.html">&larr; Back to Fronesa</a></p>
 </div>
 </main>
 <footer class="sitefoot"><div class="wrap"><a class="fbrand" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><div class="flinks"><a href="/try-it.html">Demo</a><a href="/benchmarks.html">Benchmarks</a><a href="/docs.html">Docs</a><a href="/api-docs.html">API reference</a><a href="/pricing.html">Pricing</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div><p class="fine">Fronesa &mdash; decisions that learn. &copy; 2026.<br>Every number on this site is measured; nothing is promised.</p></div></footer>
