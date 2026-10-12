@@ -29,14 +29,14 @@
     <div class="kicker">FD-1 &middot; Benchmarks</div>
     <h1 class="display-1">Measured, not promised.</h1>
     <p class="lede">Seven decision benchmarks &middot; seed 7 &middot; public data. Lab numbers, not promises.</p>
-    <p class="caveat">FD-1 &middot; Tier-1 configuration, seed 7, lab measurement &mdash; ECE is the measured uncalibrated value (T=1.0).</p>
+    <p class="caveat">FD-1 &middot; Tier-1 configuration &middot; zero-shot, seed 7, lab measurement &mdash; ECE is the measured uncalibrated value (T=1.0; top-label, 10 equal-width bins).</p>
   </div>
 
   <section id="accuracy">
     <div class="secnum">01 &mdash; Decision quality</div>
     <h2 class="display-2">Accuracy, <em>by benchmark.</em></h2>
     <div class="narrow">
-    <svg viewBox="0 0 400 470" width="100%" role="img" aria-label="Bar chart of FD-1 accuracy across seven benchmarks: MNLI 0.920, AG News 0.543, BoolQ 0.530, HellaSwag 0.333, TruthfulQA 0.317, MMLU 0.241, Banking77 0.213. Dashed ticks mark chance baselines.">
+    <svg viewBox="0 0 400 470" width="100%" role="img" aria-label="Bar chart of FD-1 zero-shot accuracy across seven benchmarks: MNLI 0.920 (binary variant), AG News 0.543, BoolQ 0.530, HellaSwag 0.333, TruthfulQA 0.317, MMLU 0.241, Banking77 0.213. Dashed ticks mark each variant's chance baseline.">
       <title>FD-1 accuracy per benchmark</title>
       <g stroke="#EAE4D2" stroke-width="1">
         <line x1="126" y1="8" x2="126" y2="446"/>
@@ -50,13 +50,13 @@
       </g>
       <!-- MNLI -->
       <text x="118" y="34" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">MNLI</text>
-      <text x="118" y="51" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">entailment</text>
+      <text x="118" y="51" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">binary entailment</text>
       <rect x="126" y="24" width="233.7" height="22" fill="#0F5132"/>
       <line x1="253" y1="20" x2="253" y2="60" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
       <text x="365.7" y="40" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.920</text>
       <!-- AG News -->
       <text x="118" y="96" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">AG News</text>
-      <text x="118" y="113" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
+      <text x="118" y="113" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">4-class choice</text>
       <rect x="126" y="86" width="137.9" height="22" fill="#0F5132"/>
       <line x1="189.5" y1="82" x2="189.5" y2="122" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
       <text x="269.9" y="102" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.543</text>
@@ -68,31 +68,31 @@
       <text x="266.6" y="164" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.530</text>
       <!-- HellaSwag -->
       <text x="118" y="220" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">HellaSwag</text>
-      <text x="118" y="237" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
+      <text x="118" y="237" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">4-ending choice</text>
       <rect x="126" y="210" width="84.6" height="22" fill="#7A1F1A"/>
       <line x1="189.5" y1="206" x2="189.5" y2="246" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
       <text x="216.6" y="226" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.333</text>
       <!-- TruthfulQA -->
       <text x="118" y="282" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">TruthfulQA</text>
-      <text x="118" y="299" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
+      <text x="118" y="299" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">MC1-style choice</text>
       <rect x="126" y="272" width="80.5" height="22" fill="#7A1F1A"/>
       <line x1="189.5" y1="268" x2="189.5" y2="308" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
       <text x="212.5" y="288" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.317</text>
       <!-- MMLU -->
       <text x="118" y="344" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">MMLU</text>
-      <text x="118" y="361" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
+      <text x="118" y="361" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">6-subject validation</text>
       <rect x="126" y="334" width="61.2" height="22" fill="#7A1F1A"/>
       <line x1="189.5" y1="330" x2="189.5" y2="370" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
       <text x="193.2" y="350" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.241</text>
       <!-- Banking77 -->
       <text x="118" y="406" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">Banking77</text>
-      <text x="118" y="423" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
+      <text x="118" y="423" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">77-intent exact match</text>
       <rect x="126" y="396" width="54.1" height="22" fill="#7A1F1A"/>
       <line x1="129.3" y1="392" x2="129.3" y2="432" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
       <text x="186.1" y="412" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.213</text>
     </svg>
     </div>
-    <p class="caveat">Solid bar = FD-1 accuracy. Dashed tick = chance. Green &ge; 0.50. n=300, MMLU 228.</p>
+    <p class="caveat">Solid bar = FD-1 accuracy, zero-shot throughout. Dashed tick = that variant&rsquo;s chance level (binary MNLI 0.50; Banking77 &asymp;0.013). Green &ge; 0.50. n=300, MMLU 228; each variant is stated exactly in &sect;05.</p>
   </section>
 
   <section id="calibration">
@@ -149,20 +149,20 @@
       <text x="350.4" y="412" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.516</text>
     </svg>
     </div>
-    <p class="caveat">ECE &mdash; expected calibration error, measured uncalibrated (T=1.0). Lower is better.</p>
+    <p class="caveat">ECE &mdash; expected calibration error: top-label, 10 equal-width bins, measured uncalibrated (T=1.0). Lower is better.</p>
   </section>
 
   <section id="seven">
     <div class="secnum">03 &mdash; The seven</div>
     <h2 class="display-2">One card <em>each.</em></h2>
     <div class="cards">
-      <div class="card"><div class="ct">MNLI</div><div class="bignum">0.920</div><div class="cd">accuracy &middot; entailment<br><span>ECE 0.057 &middot; n=300</span></div></div>
-      <div class="card"><div class="ct">AG News</div><div class="bignum">0.543</div><div class="cd">accuracy &middot; multiple-choice<br><span>ECE 0.300 &middot; n=300 &middot; 4 topics</span></div></div>
-      <div class="card"><div class="ct">BoolQ</div><div class="bignum">0.530</div><div class="cd">accuracy &middot; yes/no<br><span>ECE 0.307 &middot; n=300</span></div></div>
-      <div class="card"><div class="ct">Banking77</div><div class="bignum">0.213</div><div class="cd">accuracy &middot; multiple-choice<br><span>ECE 0.100 &middot; n=300 &middot; 77 intents</span></div></div>
-      <div class="card"><div class="ct">HellaSwag</div><div class="bignum">0.333</div><div class="cd">accuracy &middot; multiple-choice<br><span>ECE 0.516 &middot; n=300 &middot; 4 endings</span></div></div>
-      <div class="card"><div class="ct">TruthfulQA</div><div class="bignum">0.317</div><div class="cd">accuracy &middot; multiple-choice<br><span>ECE 0.494 &middot; n=300 &middot; best of 4</span></div></div>
-      <div class="card"><div class="ct">MMLU</div><div class="bignum">0.241</div><div class="cd">accuracy &middot; multiple-choice<br><span>ECE 0.505 &middot; n=228 &middot; 6-subject subset</span></div></div>
+      <div class="card"><div class="ct">MNLI</div><div class="bignum">0.920</div><div class="cd">accuracy &middot; binary entailment, neutral excluded<br><span>ECE 0.057 &middot; n=300 &middot; matched validation</span></div></div>
+      <div class="card"><div class="ct">AG News</div><div class="bignum">0.543</div><div class="cd">accuracy &middot; 4-class choice<br><span>ECE 0.300 &middot; n=300 &middot; test split</span></div></div>
+      <div class="card"><div class="ct">BoolQ</div><div class="bignum">0.530</div><div class="cd">accuracy &middot; yes/no<br><span>ECE 0.307 &middot; n=300 &middot; validation &middot; 180 yes / 120 no</span></div></div>
+      <div class="card"><div class="ct">Banking77</div><div class="bignum">0.213</div><div class="cd">accuracy &middot; 77 intents, exact match<br><span>ECE 0.100 &middot; n=300 &middot; test split</span></div></div>
+      <div class="card"><div class="ct">HellaSwag</div><div class="bignum">0.333</div><div class="cd">accuracy &middot; 4-ending choice<br><span>ECE 0.516 &middot; n=300 &middot; validation</span></div></div>
+      <div class="card"><div class="ct">TruthfulQA</div><div class="bignum">0.317</div><div class="cd">accuracy &middot; MC1-style, best of &le;4<br><span>ECE 0.494 &middot; n=300 &middot; sampled distractors</span></div></div>
+      <div class="card"><div class="ct">MMLU</div><div class="bignum">0.241</div><div class="cd">accuracy &middot; 4-choice<br><span>ECE 0.505 &middot; n=228 &middot; 6-subject validation pool</span></div></div>
     </div>
   </section>
 
@@ -177,43 +177,439 @@
   </section>
 
   <section id="market">
-    <div class="secnum">05 &mdash; Reported elsewhere</div>
-    <h2 class="display-2">What the market <em>reports.</em></h2>
-    <p class="prose">For context: the headline figures other decision-API vendors publish for their own models. Each one was produced by a different team, on a different set of tests, under a different protocol — so they sit in a table of their own, with the test named on every row, and FD-1 does not appear in it. None of these products has been run on the seven benchmarks above, and FD-1 has not been run on theirs.</p>
+    <div class="secnum">05 &mdash; Benchmark by benchmark</div>
+    <h2 class="display-2">Every benchmark, <em>side by side.</em></h2>
+    <p class="prose">FD-1&rsquo;s figures do not sit alone. Below, each of the seven benchmarks gets its own table: FD-1&rsquo;s measured row first, with the exact variant of the task it ran stated above the table, then every figure the market has actually published for that benchmark &mdash; vendor-published, independently measured, and canonical reference results, each labelled as what it is, with its protocol beside it. Where a direct competitor publishes nothing for a benchmark, the table says so; silence is data, and it is never filled in by inference.</p>
+    <p class="prose">Nothing here is averaged across benchmarks, and nothing is ranked across different task forms. A fine-tuned specialist, a frontier model run few-shot, and a zero-shot decision API are three different kinds of measurement &mdash; the protocol column is what tells them apart.</p>
+
+    <h3 class="ctx-price-h">MNLI &mdash; natural language inference</h3>
+    <p class="caveat">FD-1 as run &mdash; validation (matched) split &middot; <strong>binary</strong> entailment-vs-contradiction, neutral pairs excluded &middot; zero-shot &middot; n=300 (161 entailment / 139 contradiction) &middot; seed 7 &middot; chance 0.50.</p>
     <div class="ctx-scroll">
     <table class="ctx">
-      <thead><tr><th>Product</th><th>Headline figure</th><th>What it was measured on</th><th>Who measured it</th></tr></thead>
+      <thead><tr><th>Model</th><th>Score</th><th>Protocol &mdash; as published</th><th>Kind &middot; source</th></tr></thead>
       <tbody>
         <tr>
-          <td><strong>Decider v1.1</strong><span class="sub">Perplexity</span></td>
-          <td class="fig">85.7%</td>
-          <td>Average across Perplexity&rsquo;s own 11-benchmark panel</td>
-          <td class="who">Perplexity &mdash; vendor-reported</td>
+          <td><strong>FD-1</strong><span class="sub">Fronesa</span></td>
+          <td class="fig">0.920<span class="sub">ECE 0.057</span></td>
+          <td>Zero-shot binary variant above; ECE top-label, 10 equal-width bins, uncalibrated (T=1.0)</td>
+          <td class="who">Our measurement &mdash; Fronesa lab</td>
         </tr>
         <tr>
-          <td><strong>Decision-1</strong><span class="sub">Microsoft</span></td>
-          <td class="fig">83.5%</td>
-          <td>Average across a 36-benchmark panel</td>
-          <td class="who">Microsoft &mdash; vendor-reported</td>
+          <td><strong>T5-XXL</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.921 / 0.920</td>
+          <td>Fine-tuned on the full 393k-pair MNLI train set; 3-way accuracy on the matched / mismatched validation splits (~9,800 items each)</td>
+          <td class="who">Canonical reference &mdash; Gemma Encoder paper (arXiv 2503.02656), Table 2</td>
         </tr>
         <tr>
-          <td><strong>Jev 1.13</strong><span class="sub">TypeSafe</span></td>
-          <td class="fig">82.7%</td>
-          <td>MMLU-Pro &mdash; a single benchmark, not a panel</td>
-          <td class="who">Independent community run</td>
+          <td><strong>Gemma-2 9B</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.922 / 0.921</td>
+          <td>Fine-tuned encoder adaptation; same splits and protocol as above</td>
+          <td class="who">Canonical reference &mdash; same source, Table 2</td>
         </tr>
         <tr>
-          <td><strong>Decisions API</strong><span class="sub">OpenAI</span></td>
+          <td><strong>BERT-base</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.840</td>
+          <td>Fine-tuned; validation (matched), first 1,000 examples; 3-way task</td>
+          <td class="who">Canonical reference &mdash; TextAttack model zoo</td>
+        </tr>
+        <tr>
+          <td><strong>DistilBERT-base</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.817</td>
+          <td>Fine-tuned; same protocol as above</td>
+          <td class="who">Canonical reference &mdash; TextAttack model zoo</td>
+        </tr>
+        <tr>
+          <td><strong>Jev &middot; Perplexity Decider &middot; Decision-1 &middot; Decisions API</strong></td>
           <td class="fig">&mdash;</td>
-          <td>No published figures (public beta)</td>
+          <td>Not published. No decision-API vendor publishes an MNLI figure; Jev publishes no public-benchmark scores by policy, Microsoft an aggregate only</td>
           <td class="who">&mdash;</td>
         </tr>
       </tbody>
     </table>
     </div>
+    <p class="caveat">Read with care: every published MNLI figure above is a <em>3-way, fine-tuned</em> result &mdash; the model trained on MNLI&rsquo;s own training pairs and scored on ~9,800 validation items. FD-1&rsquo;s row is a <em>binary, zero-shot</em> variant of the task on 300 items. The fine-tuned rows are the task&rsquo;s specialist ceiling, shown as reference points &mdash; not a head-to-head, and not the same task form.</p>
+
+    <h3 class="ctx-price-h">AG News &mdash; news topic classification</h3>
+    <p class="caveat">FD-1 as run &mdash; test split &middot; 4-class choice over the four topic sentences &middot; zero-shot &middot; n=300 &middot; seed 7 &middot; chance 0.25.</p>
+    <div class="ctx-scroll">
+    <table class="ctx">
+      <thead><tr><th>Model</th><th>Score</th><th>Protocol &mdash; as published</th><th>Kind &middot; source</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>FD-1</strong><span class="sub">Fronesa</span></td>
+          <td class="fig">0.543<span class="sub">ECE 0.300</span></td>
+          <td>Zero-shot, natural sample of the test split; ECE top-label, 10 equal-width bins, uncalibrated (T=1.0)</td>
+          <td class="who">Our measurement &mdash; Fronesa lab</td>
+        </tr>
+        <tr>
+          <td><strong>Jev 1.13.0</strong><span class="sub">TypeSafe</span></td>
+          <td class="fig">0.910<span class="sub">ECE 0.064</span></td>
+          <td>Zero-shot over the hosted API; n=100 deterministically sampled, approximately class-balanced test items; run 2026-09-17. ECE top-label, 10 equal-width bins</td>
+          <td class="who">Independent measurement &mdash; AbdelStark BTZSC pilot v1</td>
+        </tr>
+        <tr>
+          <td><strong>GLiNER2.5</strong><span class="sub">Fastino</span></td>
+          <td class="fig">0.700<span class="sub">ECE 0.124</span></td>
+          <td>Zero-shot, local CPU; the same 100 items as the Jev pilot row</td>
+          <td class="who">Independent measurement &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>RoBERTa-base</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.947</td>
+          <td>Fine-tuned on the 120k-example train set; test split, first 1,000 examples</td>
+          <td class="who">Canonical reference &mdash; TextAttack model zoo</td>
+        </tr>
+        <tr>
+          <td><strong>DistilBERT-base</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.944</td>
+          <td>Fine-tuned; same protocol as above</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>ALBERT-base-v2</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.943</td>
+          <td>Fine-tuned; same protocol as above</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>BERT-base</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.942</td>
+          <td>Fine-tuned; same protocol as above</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>RoBERTa-large</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">&asymp;0.956</td>
+          <td>Best tracked fine-tuned result, full test split; aggregator-tracked, approximate</td>
+          <td class="who">Secondary &mdash; sota2.com AG News mirror (Papers With Code lineage)</td>
+        </tr>
+        <tr>
+          <td><strong>Jev (vendor) &middot; Perplexity Decider &middot; Decision-1 &middot; Decisions API</strong></td>
+          <td class="fig">&mdash;</td>
+          <td>Not published. No decision-API vendor publishes an AG News figure of its own</td>
+          <td class="who">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caveat">The Jev pilot row is the closest protocol match to FD-1 anywhere in these tables &mdash; a zero-shot decision API on the same public test distribution &mdash; with two stated differences: it sampled n=100 approximately class-balanced items against FD-1&rsquo;s n=300 natural sample, and the pilot&rsquo;s own integrity notes warn that public benchmark data may appear in either model&rsquo;s training data. The two ECEs share a functional form (top-label, 10 equal-width bins) but were computed on different samples; they are listed, not ranked. The fine-tuned rows are trained on the full training set &mdash; a ceiling, not a peer group.</p>
+
+    <h3 class="ctx-price-h">BoolQ &mdash; yes/no reading comprehension</h3>
+    <p class="caveat">FD-1 as run &mdash; validation (dev) split &middot; binary yes/no &middot; zero-shot &middot; n=300 (180 yes / 120 no &mdash; no balancing applied) &middot; seed 7 &middot; chance 0.50 &middot; <strong>majority baseline on this sample: 0.600</strong>.</p>
+    <div class="ctx-scroll">
+    <table class="ctx">
+      <thead><tr><th>Model</th><th>Score</th><th>Protocol &mdash; as published</th><th>Kind &middot; source</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>FD-1</strong><span class="sub">Fronesa</span></td>
+          <td class="fig">0.530<span class="sub">ECE 0.307</span></td>
+          <td>Zero-shot binary variant above; ECE top-label, 10 equal-width bins, uncalibrated (T=1.0)</td>
+          <td class="who">Our measurement &mdash; Fronesa lab</td>
+        </tr>
+        <tr>
+          <td><strong>ST-MoE-32B</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.924</td>
+          <td>Fine-tuned on the 9,427-example train set; SuperGLUE test split (3,245 items), leaderboard submission</td>
+          <td class="who">Canonical reference &mdash; SuperGLUE leaderboard, via Tedeschi et al. 2023</td>
+        </tr>
+        <tr>
+          <td><strong>Turing NLR v5</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.920</td>
+          <td>Fine-tuned; same leaderboard and protocol</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>Gemma-2 9B</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.913</td>
+          <td>Fine-tuned encoder adaptation; SuperGLUE validation split (3,270 items)</td>
+          <td class="who">Canonical reference &mdash; Gemma Encoder paper, Table 3</td>
+        </tr>
+        <tr>
+          <td><strong>T5 (11B)</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.912</td>
+          <td>Fine-tuned; SuperGLUE test split, leaderboard submission</td>
+          <td class="who">Canonical reference &mdash; SuperGLUE leaderboard</td>
+        </tr>
+        <tr>
+          <td><strong>Human baseline</strong></td>
+          <td class="fig">0.890</td>
+          <td>SuperGLUE human estimate for the task</td>
+          <td class="who">Canonical reference &mdash; SuperGLUE leaderboard</td>
+        </tr>
+        <tr>
+          <td><strong>Jev &middot; Perplexity Decider &middot; Decision-1 &middot; Decisions API</strong></td>
+          <td class="fig">&mdash;</td>
+          <td>Not published. No decision-API vendor publishes a BoolQ figure, and no independent run was found</td>
+          <td class="who">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caveat">One context line this panel cannot be read without: BoolQ&rsquo;s majority class is &ldquo;yes&rdquo;, and on FD-1&rsquo;s sample the always-yes baseline scores 0.600 &mdash; FD-1&rsquo;s 0.530 sits <em>below</em> that baseline, and we state it rather than let the number float. The canonical rows are all fine-tuned on BoolQ&rsquo;s own training set: a specialist ceiling (&asymp;0.92; human 0.89), not a peer group.</p>
+
+    <h3 class="ctx-price-h">Banking77 &mdash; banking intent classification</h3>
+    <p class="caveat">FD-1 as run &mdash; test split &middot; <strong>all 77 intents</strong> as candidates on every item &middot; <strong>strict exact-match</strong> argmax &middot; zero-shot &middot; n=300 &middot; seed 7 &middot; chance &asymp;0.013.</p>
+    <div class="ctx-scroll">
+    <table class="ctx">
+      <thead><tr><th>Model</th><th>Score</th><th>Protocol &mdash; as published</th><th>Kind &middot; source</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>FD-1</strong><span class="sub">Fronesa</span></td>
+          <td class="fig">0.213<span class="sub">ECE 0.100</span></td>
+          <td>Zero-shot, strict exact-match variant above &mdash; no tiered credit, no label reduction; ECE top-label, 10 equal-width bins, uncalibrated (T=1.0)</td>
+          <td class="who">Our measurement &mdash; Fronesa lab</td>
+        </tr>
+        <tr>
+          <td><strong>Jev</strong><span class="sub">hosted API</span></td>
+          <td class="fig">0.815</td>
+          <td>Zero-shot over the hosted API; n=200 queries against the full 77 intents; <strong>lenient 3-tier scoring</strong> (partial-tier credit &mdash; not exact-match accuracy); run 2026-09-19</td>
+          <td class="who">Independent measurement &mdash; Kumzha/jev-benchmark</td>
+        </tr>
+        <tr>
+          <td><strong>GLM 5.3 Flash</strong><span class="sub">hosted</span></td>
+          <td class="fig">0.835</td>
+          <td>Zero-shot hosted; same 200 queries and same lenient scoring as the Jev row</td>
+          <td class="who">Independent measurement &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>Qwen3.8-Flash</strong><span class="sub">hosted</span></td>
+          <td class="fig">0.800</td>
+          <td>Zero-shot hosted; same 200 queries and same lenient scoring</td>
+          <td class="who">Independent measurement &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>Jev 1.13.0</strong><span class="sub">TypeSafe</span></td>
+          <td class="fig">0.870<span class="sub">ECE 0.054</span></td>
+          <td>Zero-shot over the hosted API; n=100; <strong>72-label variant</strong> &mdash; 200 out-of-scope rows excluded before inference; run 2026-09-17</td>
+          <td class="who">Independent measurement &mdash; AbdelStark BTZSC pilot v1</td>
+        </tr>
+        <tr>
+          <td><strong>GLiNER2.5</strong><span class="sub">Fastino</span></td>
+          <td class="fig">0.610<span class="sub">ECE 0.062</span></td>
+          <td>Zero-shot, local; same 100 items and 72-label variant as the pilot row</td>
+          <td class="who">Independent measurement &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-4</strong><span class="sub">OpenAI</span></td>
+          <td class="fig">0.831</td>
+          <td>Micro-F1, <strong>3-shot</strong> with human-curated representative examples; full test split (3,080 items). With random examples instead: 0.742</td>
+          <td class="who">Independent measurement &mdash; Loukas et al. 2023</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-3.5-turbo</strong><span class="sub">OpenAI</span></td>
+          <td class="fig">0.752</td>
+          <td>Micro-F1, 1-shot with representative examples; full test split</td>
+          <td class="who">Independent measurement &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>S-MPNet-v2 (SetFit)</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.940</td>
+          <td>Micro-F1; fine-tuned on the full training data; test split</td>
+          <td class="who">Canonical reference &mdash; Loukas et al. 2023, Table 4</td>
+        </tr>
+        <tr>
+          <td><strong>BERT</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.9366</td>
+          <td>Accuracy; fine-tuned on the full train set (10,003); test split (3,080). The dataset paper&rsquo;s own baseline</td>
+          <td class="who">Canonical reference &mdash; Casanueva et al. 2020, via Loukas et al. 2023</td>
+        </tr>
+        <tr>
+          <td><strong>bge-small + logistic regression</strong><span class="sub">supervised</span></td>
+          <td class="fig">0.940</td>
+          <td>Supervised reference trained on ~10k examples, reported inside the independent run&rsquo;s repository as a ceiling</td>
+          <td class="who">Independent measurement &mdash; Kumzha/jev-benchmark</td>
+        </tr>
+        <tr>
+          <td><strong>TF-IDF + logistic regression</strong><span class="sub">supervised</span></td>
+          <td class="fig">0.885</td>
+          <td>Supervised reference trained on 9,993 examples; same source as above</td>
+          <td class="who">Independent measurement &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>Jev (vendor) &middot; Perplexity Decider &middot; Decision-1</strong></td>
+          <td class="fig">&mdash;</td>
+          <td>Not published. The Jev figures above are independent measurements, not vendor publications</td>
+          <td class="who">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caveat">Three different tasks circulate under the name &ldquo;Banking77&rdquo;, and they are never interchangeable here: FD-1&rsquo;s strict form (full 77 intents, exact match), the hosted-API run&rsquo;s lenient 3-tier scoring over the full 77 (partial credit for near-tier answers &mdash; a frontier-scale hosted model, not a small classifier), and the pilot&rsquo;s 72-label variant with out-of-scope rows removed. The lenient and strict scores must never share a cell or a sentence without their scoring rule attached. The supervised rows are trained on ~10,000 examples &mdash; ceilings, not peers.</p>
+
+    <h3 class="ctx-price-h">HellaSwag &mdash; sentence completion</h3>
+    <p class="caveat">FD-1 as run &mdash; validation split &middot; 4-ending choice, classification protocol &middot; zero-shot &middot; n=300 &middot; seed 7 &middot; chance 0.25.</p>
+    <div class="ctx-scroll">
+    <table class="ctx">
+      <thead><tr><th>Model</th><th>Score</th><th>Protocol &mdash; as published</th><th>Kind &middot; source</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>FD-1</strong><span class="sub">Fronesa</span></td>
+          <td class="fig">0.333<span class="sub">ECE 0.516</span></td>
+          <td>Zero-shot classification variant above; ECE top-label, 10 equal-width bins, uncalibrated (T=1.0)</td>
+          <td class="who">Our measurement &mdash; Fronesa lab</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-4 (base)</strong><span class="sub">OpenAI</span></td>
+          <td class="fig">0.953</td>
+          <td><strong>10-shot</strong> log-probability scoring; official leaderboard, test set (the GPT-4 Technical Report notes its figure was computed on a privately held holdout; 0.956 on validation)</td>
+          <td class="who">Canonical reference &mdash; official HellaSwag leaderboard; GPT-4 Technical Report</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-3.5</strong><span class="sub">OpenAI</span></td>
+          <td class="fig">0.855</td>
+          <td>10-shot; same reporting as above</td>
+          <td class="who">Vendor-published &mdash; GPT-4 Technical Report, Table 2</td>
+        </tr>
+        <tr>
+          <td><strong>ALUM (mt-dnn)</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.856</td>
+          <td>Fine-tuned; test split; leaderboard entry 2020</td>
+          <td class="who">Canonical reference &mdash; official HellaSwag leaderboard</td>
+        </tr>
+        <tr>
+          <td><strong>RoBERTa</strong><span class="sub">fine-tuned</span></td>
+          <td class="fig">0.852</td>
+          <td>Fine-tuned; test split; leaderboard entry 2019</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>BERT-Large</strong><span class="sub">fine-tuned era</span></td>
+          <td class="fig">0.473</td>
+          <td>2019 baseline on the same leaderboard</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>Human performance</strong></td>
+          <td class="fig">0.956</td>
+          <td>Human ceiling for the task (Zellers et al. 2019)</td>
+          <td class="who">Canonical reference &mdash; official HellaSwag leaderboard</td>
+        </tr>
+        <tr>
+          <td><strong>Jev &middot; Perplexity Decider &middot; Decision-1 &middot; Decisions API</strong></td>
+          <td class="fig">&mdash;</td>
+          <td>Not published. No decision-API vendor publishes a HellaSwag figure</td>
+          <td class="who">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caveat">HellaSwag is a saturated, retired benchmark: its leaderboard closed in November 2024 after GPT-4 matched the human ceiling, and vendors no longer report it. The high published figures are 10-shot log-probability scoring over the full ~10k-item test set; FD-1&rsquo;s row is a zero-shot classification result on 300 validation items. Shot count, split, and n are stated on every row because without them the visual gap misleads in both directions.</p>
+
+    <h3 class="ctx-price-h">TruthfulQA &mdash; truthfulness under misconception pressure</h3>
+    <p class="caveat">FD-1 as run &mdash; <strong>MC1-style</strong>: the Best Answer against up to 3 sampled incorrect answers (2&ndash;4 options per item) &middot; zero-shot &middot; n=300 &middot; seed 7 &middot; chance on this exact sample 0.277. <strong>Not</strong> the binary setting, and not MC2.</p>
+    <div class="ctx-scroll">
+    <table class="ctx">
+      <thead><tr><th>Model</th><th>Score</th><th>Protocol &mdash; as published</th><th>Kind &middot; source</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>FD-1</strong><span class="sub">Fronesa</span></td>
+          <td class="fig">0.317<span class="sub">ECE 0.494</span></td>
+          <td>MC1-style variant above, scored by the decision harness (not log-probability over the full choice set); ECE top-label, 10 equal-width bins, uncalibrated (T=1.0)</td>
+          <td class="who">Our measurement &mdash; Fronesa lab</td>
+        </tr>
+        <tr>
+          <td><strong>Jev 1.13.0</strong><span class="sub">TypeSafe</span></td>
+          <td class="fig">0.920</td>
+          <td><strong>TruthfulQA binary</strong> &mdash; two options per question (best answer vs best incorrect answer); n=500 Nimble-pinned subset, held out of Decider&rsquo;s training data; measured over the Jev API. Random floor for this setting: 0.50</td>
+          <td class="who">Vendor-published &mdash; Perplexity Decider v1 model card</td>
+        </tr>
+        <tr>
+          <td><strong>Perplexity Decider v1</strong><span class="sub">pplx-decider-v1-27b</span></td>
+          <td class="fig">0.854</td>
+          <td>TruthfulQA binary; same panel and protocol as above</td>
+          <td class="who">Vendor-published &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>Qwen3.8-27B</strong><span class="sub">Decider&rsquo;s base model</span></td>
+          <td class="fig">0.828</td>
+          <td>TruthfulQA binary; same panel and protocol as above</td>
+          <td class="who">Vendor-published &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-3 (175B)</strong></td>
+          <td class="fig">0.21 / 0.33</td>
+          <td><strong>MC1 / MC2</strong> &mdash; zero-shot log-probability scoring over the full choice set, 817 questions. MC2 is a probability-mass metric, not an accuracy</td>
+          <td class="who">Canonical reference &mdash; TruthfulQA benchmark repository</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-J 6B</strong></td>
+          <td class="fig">0.20 / 0.36</td>
+          <td>MC1 / MC2; same protocol as above</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-2 1.5B</strong></td>
+          <td class="fig">0.22 / 0.39</td>
+          <td>MC1 / MC2; same protocol as above</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>UnifiedQA 3B</strong></td>
+          <td class="fig">0.19 / 0.35</td>
+          <td>MC1 / MC2; same protocol as above</td>
+          <td class="who">Canonical reference &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-4</strong><span class="sub">OpenAI</span></td>
+          <td class="fig">chart only</td>
+          <td>MC1 accuracy published as bars (0-shot / 5-shot / RLHF) with no printed values; recorded as chart-only rather than estimated</td>
+          <td class="who">Vendor-published &mdash; GPT-4 Technical Report, Figure 7</td>
+        </tr>
+        <tr>
+          <td><strong>Perplexity Decider v1.1 &middot; Decision-1 &middot; Decisions API</strong></td>
+          <td class="fig">&mdash;</td>
+          <td>Not published. Decider v1.1 dropped this panel for Decision Index category scores; Jev&rsquo;s binary figure above exists only inside Perplexity&rsquo;s card</td>
+          <td class="who">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caveat">Three different metrics circulate under this benchmark&rsquo;s name, and they are never mixed here: <strong>MC1</strong> (one true answer among 4&ndash;12, log-probability wins), <strong>MC2</strong> (probability mass on all true answers &mdash; not an accuracy), and the <strong>binary</strong> setting introduced in January 2025 (two options, 0.50 floor). FD-1&rsquo;s 0.317 is an MC1-style score against a 0.277 sample chance level; the binary panel&rsquo;s 0.85&ndash;0.92 figures are a different, easier measurement on training-held-out subsets. Placing them in one ranking would manufacture a conclusion neither protocol supports.</p>
+
+    <h3 class="ctx-price-h">MMLU &mdash; multitask knowledge</h3>
+    <p class="caveat">FD-1 as run &mdash; <strong>validation</strong> split &middot; <strong>6 subjects only</strong>, the entire pool: miscellaneous 86 &middot; elementary mathematics 41 &middot; high-school biology 32 &middot; marketing 25 &middot; high-school US history 22 &middot; sociology 22 &middot; 4-choice &middot; zero-shot &middot; n=228 &middot; seed 7 &middot; chance 0.25.</p>
+    <div class="ctx-scroll">
+    <table class="ctx">
+      <thead><tr><th>Model</th><th>Score</th><th>Protocol &mdash; as published</th><th>Kind &middot; source</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>FD-1</strong><span class="sub">Fronesa</span></td>
+          <td class="fig">0.241<span class="sub">ECE 0.505</span></td>
+          <td>Zero-shot, 6-subject validation variant above; ECE top-label, 10 equal-width bins, uncalibrated (T=1.0)</td>
+          <td class="who">Our measurement &mdash; Fronesa lab</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-4</strong><span class="sub">OpenAI</span></td>
+          <td class="fig">0.864</td>
+          <td><strong>5-shot</strong>; full 57-subject test set (14,042 questions), letter-choice format</td>
+          <td class="who">Vendor-published &mdash; GPT-4 Technical Report, Table 2</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-3.5</strong><span class="sub">OpenAI</span></td>
+          <td class="fig">0.700</td>
+          <td>5-shot; full test set, same reporting</td>
+          <td class="who">Vendor-published &mdash; same source</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-4</strong><span class="sub">calibration</span></td>
+          <td class="fig">ECE 0.007 / 0.074</td>
+          <td>ECE of the pre-trained base model / after RLHF, measured on a subset of MMLU with confidence as log-probability over the A/B/C/D choices. An ECE row &mdash; not an accuracy</td>
+          <td class="who">Vendor-published &mdash; GPT-4 Technical Report, Figure 8</td>
+        </tr>
+        <tr>
+          <td><strong>Jev &middot; Perplexity Decider &middot; Decision-1 &middot; Decisions API</strong></td>
+          <td class="fig">&mdash;</td>
+          <td>Not published. No decision-API vendor publishes an MMLU figure (Microsoft&rsquo;s 83.5% is a 36-benchmark aggregate, not an MMLU score)</td>
+          <td class="who">&mdash;</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="caveat">FD-1&rsquo;s pool is six of the 57 subjects on the validation split &mdash; miscellaneous alone is 37.7% of its items &mdash; against reference figures that are 5-shot on the full test set: different protocol classes, labelled rather than ranked. One figure is deliberately absent: Jev&rsquo;s widely quoted 82.7% is an <strong>MMLU-Pro</strong> result (a different, harder benchmark &mdash; 10 options, different items, community-run) and it does not belong in an MMLU table. The GPT-4 calibration row is the one directly relevant precedent on this panel: a frontier base model exceptionally calibrated on MMLU-style items (0.007) whose post-training made it &asymp;10&times; worse (0.074) &mdash; published by its own vendor, and the standard for presenting uncalibrated ECE plainly.</p>
+
     <div class="ctx-note">
-      <div class="nh">Why FD-1 isn&rsquo;t in this table</div>
-      <p>FD-1&rsquo;s 0.920 is a score on one benchmark — MNLI, n=300 — not a panel average. Lining it up against the averages and single scores above would manufacture a ranking nobody measured. If a shared protocol ever exists — same items, same harness, every product — we will publish that comparison and let it say what it says. Until then, their numbers stay in their rows, and ours stay in sections 01&ndash;03.</p>
+      <div class="nh">How to read these tables</div>
+      <p>FD-1&rsquo;s row is first in every table, and the exact variant it ran is stated above it &mdash; task form, split, sample size, scoring rule, seed. The other rows are the published record for that benchmark: most are fine-tuned specialists or frontier models run few-shot, which makes them ceilings and reference points, not peers; the rows that do share FD-1&rsquo;s protocol class say so in their protocol cell. ECE appears only where a real figure was published with its method, and ECEs are never ranked &mdash; no two published ECEs in these tables share a dataset, a binning, and a confidence definition at the same time. Where a competitor publishes nothing, the table says &ldquo;not published&rdquo; and explains why. If a genuinely shared protocol ever exists &mdash; same items, same harness, every product &mdash; we will publish that comparison and let it say what it says.</p>
     </div>
     <h3 class="ctx-price-h">What they charge</h3>
     <p class="prose">List prices for input tokens, as published by each vendor.</p>
@@ -228,7 +624,7 @@
       </tbody>
     </table>
     </div>
-    <p class="caveat">Different panels, different protocols — there is no shared scoreboard yet, and this page will not pretend otherwise.</p>
+    <p class="caveat">Different panels, different protocols &mdash; every figure on this page carries its protocol with it, and none is averaged into a ranking.</p>
   </section>
 
   <div class="close">
