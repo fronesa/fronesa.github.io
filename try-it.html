@@ -29,7 +29,7 @@
 <div class="group-label">Clear calls &mdash; the model is sure</div>
   <div class="chips" id="chips-clear"></div>
 
-  <div class="group-label">Borderline &mdash; below the line, escalated to a human</div>
+  <div class="group-label">Borderline &mdash; below the line, escalated to the larger model</div>
   <div class="chips" id="chips-border"></div>
 
   <div class="group-label">Confident &mdash; and wrong</div>
@@ -46,7 +46,7 @@
     <div class="thr">escalation threshold 0.49 &mdash; tuned once for a 15% budget, then fixed</div>
   </div>
 
-  <div class="note"><strong>How to read a verdict.</strong> <strong>Decision</strong> is the call itself &mdash; positive, negative, or neutral in these examples. <strong>Confidence</strong> is the model&rsquo;s self-reported certainty &mdash; 0.99 means &ldquo;I&rsquo;m sure&rdquo;, 0.41 means &ldquo;I&rsquo;m guessing&rdquo;. It is not a calibrated probability: well-calibrated on SMS-style inputs (ECE &asymp; 0.05), less reliable on phishing-style inputs (ECE &asymp; 0.21), and overconfident on sarcastic or adversarial text. <strong>Escalation</strong>: calls below the <strong>0.49 line</strong> are escalated &mdash; in the pilot flow, a human reviewer decides, and the reviewer&rsquo;s answer becomes training data. That&rsquo;s the loop.</div>
+  <div class="note"><strong>How to read a verdict.</strong> <strong>Decision</strong> is the call itself &mdash; positive, negative, or neutral in these examples. <strong>Confidence</strong> is the model&rsquo;s self-reported certainty &mdash; 0.99 means &ldquo;I&rsquo;m sure&rdquo;, 0.41 means &ldquo;I&rsquo;m guessing&rdquo;. It is not a calibrated probability: well-calibrated on SMS-style inputs (ECE &asymp; 0.05), less reliable on phishing-style inputs (ECE &asymp; 0.21), and overconfident on sarcastic or adversarial text. <strong>Escalation</strong>: calls below the <strong>0.49 line</strong> are escalated &mdash; the larger model re-checks them, and its answer becomes training data. That&rsquo;s the loop.</div>
 
   <section class="chapter">
     <div class="secnum">01 &mdash; Live</div>
@@ -137,7 +137,7 @@
     <div class="footnotes">
       <p>1. Measured in our lab on public benchmark data: FD-1, Tier-1 (internal bundle tier1/ettinx-nli-xs-v1), seed 7. ECE is the measured uncalibrated value (T = 1.0). Full accuracy and calibration tables: <a href="/benchmarks.html">Benchmarks</a>.</p>
       <p>2. The examples at the top are hand-picked to show clear, borderline, and wrong calls &mdash; they illustrate the output format, not the measured rates. Per-model measured performance is on the benchmarks page.</p>
-      <p>3. The 0.49 escalation threshold shown on the verdict card was tuned once for a 15% human-review budget, then fixed.</p>
+      <p>3. The 0.49 escalation threshold shown on the verdict card was tuned once for a 15% escalation budget for the larger model, then fixed.</p>
     </div>
   </section>
 
@@ -179,7 +179,7 @@ function gloss(c) {
   if (c >= 0.9) return 'the model is very sure of this call';
   if (c >= 0.7) return 'the model is fairly sure of this call';
   if (c >= 0.49) return 'the model is only somewhat sure \u2014 close to the line';
-  return 'the model is basically guessing \u2014 that\u2019s why a human steps in';
+  return 'the model is basically guessing \u2014 that\u2019s why the larger model steps in';
 }
 function show(i) {
   chipEls.forEach(c => { c.classList.remove('on'); c.setAttribute('aria-pressed', 'false'); });
@@ -199,9 +199,9 @@ function show(i) {
   const esc = document.getElementById('esc');
   esc.className = 'esc ' + (d.escalated ? 'yes' : 'no');
   esc.innerHTML = d.escalated
-    ? '<div class="esc-head">Escalated \u2014 in the pilot flow, a human decides.</div>Confidence ' + d.confidence.toFixed(3) +
-      ' is below the 0.49 line, so the model doesn\u2019t make this call. In the pilot flow, a reviewer decides, and their answer becomes training data for the next version.'
-    : '<div class="esc-head">Decided automatically \u2014 no human needed.</div>Confidence ' + d.confidence.toFixed(3) +
+    ? '<div class="esc-head">Escalated \u2014 the larger model takes a second look.</div>Confidence ' + d.confidence.toFixed(3) +
+      ' is below the 0.49 line, so the fast model doesn\u2019t settle this call alone. The larger model re-checks it, and its answer becomes training data for the next version.'
+    : '<div class="esc-head">Decided automatically \u2014 by the fast model.</div>Confidence ' + d.confidence.toFixed(3) +
       ' is above the 0.49 line, so the model makes the call on its own.';
   const wrong = document.getElementById('wrongnote');
   if (d.group === 'wrong') {
@@ -239,8 +239,8 @@ if (DATA.length) show(0);
     const pillClass = {positive:'pos', negative:'neg', neutral:'neu', spam:'neg', ham:'pos'};
     const pill = pillClass[d.decision] || 'neu';
     const escBox = d.escalated
-      ? '<div class="esc-head">Escalated \u2014 in the pilot flow, a human decides.</div>The model doesn\u2019t make this call on its own; a pilot reviewer does.'
-      : '<div class="esc-head">Decided automatically \u2014 no human needed.</div>';
+      ? '<div class="esc-head">Escalated \u2014 the larger model takes a second look.</div>The fast model doesn\u2019t make this call on its own; the larger model re-checks it.'
+      : '<div class="esc-head">Decided automatically \u2014 by the fast model.</div>';
     let coldNote = '';
     if (ms > COLD_START_CLAIM_S * 1000) {
       coldNote = '<p class="coldnote">This request took ' + s + '&thinsp;s &mdash; it hit a cold start ' +

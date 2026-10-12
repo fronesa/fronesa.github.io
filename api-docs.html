@@ -189,7 +189,7 @@
       <tr><td><code>vertical</code> (spam noul only)</td><td><code>"spam"</code> &mdash; marks an answer produced by the spam vertical (&sect;4).</td></tr>
       <tr><td><code>error</code></td><td>Present and <code>true</code> only when that one question&rsquo;s engine call failed. The call still returns 200; the failed answer arrives with <code>uncertain</code> and <code>escalated</code> set. Treat it as no answer.</td></tr>
     </table></div>
-    <div class="warn"><strong>The escalation contract:</strong> when <code class="mono" style="font-size:13px">uncertain</code> or <code class="mono" style="font-size:13px">escalated</code> is <code class="mono" style="font-size:13px">true</code>, the engine is telling you this answer is not safe to act on automatically. <strong>Do not auto-act</strong> &mdash; route the case through your own review process. That flag, not the raw confidence number, is the product&rsquo;s safety contract.</div>
+    <div class="warn"><strong>The escalation contract:</strong> when <code class="mono" style="font-size:13px">uncertain</code> or <code class="mono" style="font-size:13px">escalated</code> is <code class="mono" style="font-size:13px">true</code>, the engine is telling you this answer is not safe to act on automatically. <strong>Do not auto-act</strong> &mdash; where the larger second stage is provisioned it has already re-checked the answer inside the cascade (see <code class="mono" style="font-size:13px">tier</code> / <code class="mono" style="font-size:13px">reviewed_by</code> above), and it still could not reach confidence. That flag, not the raw confidence number, is the product&rsquo;s safety contract.</div>
   </section>
 
   <section id="spam-vertical">

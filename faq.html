@@ -37,7 +37,7 @@
     <details class="acc">
       <summary>What does Fronesa do?</summary>
       <div class="answer">
-        <p>Fronesa is a decision API. You send it a piece of text; it returns a decision (for example <code>spam</code> or <code>ham</code>), a confidence score between 0 and 1, and an <strong>escalation flag</strong>. When the flag is set, the model is explicitly saying "I don't know" — you're expected to route that case to a human reviewer, not act on it automatically.</p>
+        <p>Fronesa is a decision API. You send it a piece of text; it returns a decision (for example <code>spam</code> or <code>ham</code>), a confidence score between 0 and 1, and an <strong>escalation flag</strong>. When the flag is set, the model is explicitly saying "I don't know" — the case goes to the larger model for a second pass — it is not acted on automatically.</p>
         <p>The product's thesis is <strong>decisions that learn</strong>: your reviewers' corrections feed a retraining loop, so the model improves on your data over time. See the <a href="index.html#how">Method</a> section for the full picture.</p>
       </div>
     </details>
@@ -47,7 +47,7 @@
       <div class="answer">
         <p>Three things a raw classifier doesn't give you:</p>
         <ul>
-          <li><strong>An escalation contract.</strong> Every response carries an <code>escalated</code> boolean. Below the confidence threshold, we don't guess — we hand the decision to your humans. That contract is documented in the <a href="sdk-docs.html">API reference</a>, not buried in a blog post.</li>
+          <li><strong>An escalation contract.</strong> Every response carries an <code>escalated</code> boolean. Below the confidence threshold, we don't guess — we hand the decision to a larger model for a second pass. That contract is documented in the <a href="sdk-docs.html">API reference</a>, not buried in a blog post.</li>
           <li><strong>A learning loop.</strong> Reviewer corrections submitted through <code>POST /review</code> accumulate in a ledger; once 50 new labels exist, a retraining candidate is built and promoted only if it beats the current model on a held-out set. Details in our <a href="changelog.html">changelog</a> as the loop ships.</li>
           <li><strong>An audit trail.</strong> Every response carries a model <code>version</code> and every request a request ID, so you can reconstruct exactly what the API said and why.</li>
         </ul>
@@ -64,7 +64,7 @@
     <details class="acc">
       <summary>What does "escalated" mean, exactly?</summary>
       <div class="answer">
-        <p>It means the model's confidence fell below its escalation threshold — the model is telling you it isn't sure. The contract is simple: <strong>do not auto-act on escalated decisions</strong>. Route them to human review (or a stronger model), and optionally send the reviewer's verdict back through <code>POST /review</code> so the loop learns from it.</p>
+        <p>It means the model's confidence fell below its escalation threshold — the model is telling you it isn't sure. The contract is simple: <strong>do not auto-act on escalated decisions</strong>. They are re-checked by the larger model, and you can optionally send the corrected verdict back through <code>POST /review</code> so the loop learns from it.</p>
         <p>Error items in batch responses are also marked escalated — same rule applies.</p>
       </div>
     </details>
