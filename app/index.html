@@ -160,14 +160,12 @@ footer p{font-family:var(--fm);font-size:.72rem;color:var(--ink-4);line-height:2
       <div style="font-size:.88rem"><p><span class="sq">■</span> <b>ham</b> — 90%</p><p><span style="color:var(--paper-4)">■</span> <b>spam</b> — 9%</p><p><span style="color:var(--ink-4)">■</span> <b>escalated</b> — 1%</p></div>
       </div></div>
   </div>
-  <div class="card"><h2>Latest verdicts</h2><div id="dashVerdicts"></div>
-    <p style="margin-top:16px"><button class="btn btn-s" data-view="verdicts">All verdicts</button></p></div>
 </section>
 
 <!-- VERDICTS -->
 <section class="view" id="v-verdicts">
   <h1>Verdicts<span class="sq">■</span></h1>
-  <p class="sub">Decision, confidence, falsifiable reason, human escape — on every one.</p>
+  <p class="sub">Decision, confidence, falsifiable reason — uncertain ones are re-checked by the larger model.</p>
   <div class="chips" id="vFilters" role="group" aria-label="Filter verdicts">
     <button class="chip on" data-f="all">all</button>
     <button class="chip" data-f="ham">ham</button>
@@ -277,7 +275,7 @@ return `<div class="verdict"><div class="vrow"><div class="grow"><span class="vv
 function renderVerdicts(f='all'){$('#verdictList').innerHTML=V.filter(x=>f==='all'||(f==='uncertain'?x.unc:x.v===f)).map(vcard).join('')||'<p style="color:var(--ink-3)">No verdicts in this bucket.</p>';bindV();}
 function bindV(){$$('.esc').forEach(b=>b.onclick=()=>toast('Flagged — feeds the learning loop.'));
  $$('.ok').forEach(b=>b.onclick=()=>toast('Confirmed — the loop learns from this label.'));}
-$('#dashVerdicts').innerHTML=V.slice(0,3).map(vcard).join('');bindV();renderVerdicts();
+bindV();renderVerdicts();
 $$('#vFilters .chip').forEach(c=>c.onclick=()=>{$$('#vFilters .chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');renderVerdicts(c.dataset.f);});
 /* labels */
 $('#labelQueue').innerHTML=V.slice(0,4).map((x,i)=>`<label class="switch"><input type="checkbox" ${i<2?'checked':''}><span class="trk"></span><span><b>${x.v}</b> · <span class="mono" style="font-size:.8rem">${x.t}</span></span></label>`).join('');
