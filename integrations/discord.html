@@ -28,7 +28,7 @@
 <div class="hero">
   <div class="kicker">Integration guide</div>
   <h1>Discord bot <em>moderation</em></h1>
-  <p>Filter spam and scam messages in a Discord server with the Fronesa decision API and <code class="mono">discord.py</code>. Confident spam gets deleted; uncertain messages go to your mods — never auto-banned.</p>
+  <p>Filter spam and scam messages in a Discord server with the Fronesa decision API and <code class="mono">discord.py</code>. Confident spam gets deleted; uncertain messages go to the larger model — never auto-banned.</p>
 </div>
 
 <h2>The problem</h2>
@@ -86,7 +86,7 @@ bot.run(os.environ["DISCORD_TOKEN"])</pre></div>
   <tr><th>API says</th><th>Bot does</th><th>Why</th></tr>
   <tr><td>spam, confident</td><td>Deletes the message, logs it</td><td>Lab-measured zero false positives on spam — safe to act</td></tr>
   <tr><td>ham, confident</td><td>Nothing — message stays</td><td>No reason to touch it</td></tr>
-  <tr><td>escalated</td><td>Posts a link + confidence score to #mod-review</td><td>The model isn't sure — a human decides, never auto-ban</td></tr>
+  <tr><td>escalated</td><td>Posts a link + confidence score to #mod-review</td><td>The model isn't sure — the larger model decides, never auto-ban</td></tr>
 </table></div>
 
 <div class="warn"><strong>Honest scope:</strong> this guide filters spam/scam text — that's what the production model is trained for (lab accuracy 0.9875 on spam vs. legitimate messages). It is not a harassment or hate-speech detector. Don't promise your members coverage it doesn't have.</div>
