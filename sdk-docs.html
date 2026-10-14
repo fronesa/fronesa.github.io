@@ -36,7 +36,7 @@
 
     <div class="codeblock">
       <div class="cap"><span>bash — install from source</span><span></span></div>
-<pre><span class="c">$</span> git clone https://github.com/suretyai/fronesa.git
+<pre><span class="c">$</span> git clone https://github.com/fronesa/fronesa.git
 <span class="c">$</span> cd fronesa/sdk/python
 <span class="c">$</span> pip install .</pre>
     </div>
@@ -58,7 +58,7 @@ result = client.decide(<span class="s">"Free prizes, claim now!"</span>)
 <span class="k">print</span>(result.decision, result.confidence, result.escalated)</pre>
     </div>
 
-    <div class="warn"><strong>The escalation contract:</strong> when <code class="mono" style="font-size:13px">result.escalated</code> is <code class="mono" style="font-size:13px">True</code>, the model is telling you it is not confident enough to decide. <strong>Do not auto-act</strong> &mdash; route the item to human review. The <code class="mono" style="font-size:13px">result.requires_review</code> property is an alias for <code class="mono" style="font-size:13px">escalated</code>, for code that reads better at the call site.</div>
+    <div class="warn"><strong>The escalation contract:</strong> when <code class="mono" style="font-size:13px">result.escalated</code> is <code class="mono" style="font-size:13px">True</code>, the model is telling you it is not confident enough to decide. <strong>Do not auto-act</strong> &mdash; route the item to the larger model. The <code class="mono" style="font-size:13px">result.requires_review</code> property is an alias for <code class="mono" style="font-size:13px">escalated</code>, for code that reads better at the call site.</div>
 
     <div class="limit-note"><strong>Cold starts &mdash; read this before your first call:</strong> the free tier sleeps after ~15 idle minutes, and the first request after idle can take up to ~90&nbsp;s while the container boots. The default <code class="mono" style="font-size:13px">timeout=10.0</code> <strong>will not survive a cold start</strong> &mdash; the request raises <code class="mono" style="font-size:13px">RequestTimeoutError</code>, which is not retried. Two honest options: allow a long first call with <code class="mono" style="font-size:13px">Client(api_key=..., timeout=(10.0, 120.0))</code> (fail fast on unreachable hosts, tolerate the boot), or pre-warm the service with an unauthenticated <code class="mono" style="font-size:13px">GET /health</code> before your first <code class="mono" style="font-size:13px">decide()</code>.</div>
   </section>
@@ -94,10 +94,10 @@ result = client.decide(<span class="s">"Free prizes, claim now!"</span>)
       <tr><th>Field</th><th>Meaning</th></tr>
       <tr><td>decision</td><td><strong>The model's answer</strong> &mdash; a label string (e.g. <code>spam</code> / <code>ham</code>).</td></tr>
       <tr><td>confidence</td><td><strong>Model confidence</strong>, a float in [0, 1] — well-calibrated on SMS-style inputs. 0.78 means the model assigns 78% probability to its answer.</td></tr>
-      <tr><td>escalated</td><td><strong>The honest flag.</strong> <code>True</code> means the model is not confident enough to decide &mdash; do not auto-act; route to human review.</td></tr>
+      <tr><td>escalated</td><td><strong>The honest flag.</strong> <code>True</code> means the model is not confident enough to decide &mdash; do not auto-act; route to the larger model.</td></tr>
       <tr><td>version</td><td><strong>Model version</strong> that answered. Log it so you can compare behavior across versions.</td></tr>
     </table></div>
-    <p class="body"><code>Decision.requires_review</code> is a read-only property, an exact alias for <code>escalated</code> &mdash; <code>True</code> means the item needs a human, never automatic action.</p>
+    <p class="body"><code>Decision.requires_review</code> is a read-only property, an exact alias for <code>escalated</code> &mdash; <code>True</code> means the item needs the larger model, never automatic action.</p>
   </section>
 
   <section id="errors">
