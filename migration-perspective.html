@@ -121,12 +121,12 @@ r = requests.post(
 ).json()
 
 if r["escalated"]:
-    action = "send_to_human_review"
+    action = "route_to_larger_model"
 elif r["decision"] == "spam":
     action = "hide"
 else:
     action = "allow"</code></pre>
-    <p><strong>What changed in the logic:</strong> you no longer pick a threshold. Fronesa's model proposes a decision and a confidence; the <code>escalated</code> flag marks items where the model is uncertain, and those go to your human reviewers. Your old threshold logic becomes a routing policy: your policy acts on high-confidence proposals, your reviewers own the escalated ones.</p>
+    <p><strong>What changed in the logic:</strong> you no longer pick a threshold. Fronesa's model proposes a decision and a confidence; the <code>escalated</code> flag marks items where the model is uncertain, and the larger model handles the hard cases. Your old threshold logic becomes a routing policy: your policy acts on high-confidence proposals, the larger model owns the escalated ones.</p>
 
     <h3>JavaScript (comment forms / live chat)</h3>
     <p><strong>Before (Perspective):</strong> parse <code>attributeScores.TOXICITY.summaryScore.value</code>, compare to your threshold.</p>
@@ -182,10 +182,10 @@ if (r.escalated) {
     <p class="group-sub">Eight steps, in order.</p>
     <ul class="checklist">
       <li><strong>Inventory your Perspective usage.</strong> List every <code>requestedAttributes</code> value you use and the threshold + action for each. (You can't map what you haven't listed.)</li>
-      <li><strong>Collapse per-attribute rules to one policy.</strong> Decide which attribute outcomes = block, which = human review, which = allow. The gray-area ones map to Fronesa's <code>escalated</code> path.</li>
+      <li><strong>Collapse per-attribute rules to one policy.</strong> Decide which attribute outcomes = block, which = escalate to the larger model, which = allow. The gray-area ones map to Fronesa's <code>escalated</code> path.</li>
       <li><strong>Audit your language mix.</strong> If non-English traffic is material, Fronesa is not ready for you yet — check back or talk to us.</li>
       <li><strong>Rewire the decision branch.</strong> Replace <code>score &gt;= threshold</code> with the three-way <code>escalated / decision</code> routing shown above.</li>
-      <li><strong>Wire up the review queue.</strong> The <code>escalated</code> flag only helps if someone reads the queue. Assign reviewers before you switch traffic.</li>
+      <li><strong>Wire up the review queue.</strong> The <code>escalated</code> flag only helps if your system routes it to the larger model.. Set your confidence thresholds before you switch traffic.</li>
       <li><strong>Run shadow mode for 2 weeks.</strong> Send the same traffic to Fronesa and log decisions alongside your existing logic. Compare disagreement rates before cutting over.</li>
       <li><strong>Update your own users' copy.</strong> If your UI said "checked by Perspective" or showed toxicity scores, update it. Don't present Fronesa decisions as Perspective scores.</li>
       <li><strong>Check your rate-limit headroom.</strong> 100 req/min per key; request more keys or talk to us if you're above that.</li>
@@ -202,7 +202,7 @@ if (r.escalated) {
       <li>We don't offer an <strong>SLA on free hosting</strong> — and we say so plainly in our developer terms.</li>
       <li>We are <strong>not SOC 2 / ISO 27001 certified</strong> and have not had an independent pen test — documented on our security page.</li>
     </ul>
-    <p>What we do offer: a decision API designed to learn from your reviewers' corrections over time, an escalation path that keeps humans in the loop for the hard cases, and honest numbers about what the model can and can't do.</p>
+    <p>What we do offer: a decision API designed to learn from your reviewers' corrections over time, an escalation path where the larger model handles the hard cases, and honest numbers about what the model can and can't do.</p>
   </section>
 
   <section id="who-this-is-for">
