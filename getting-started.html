@@ -81,7 +81,7 @@
     <div class="secnum">Step 4 &mdash; Handle escalations</div>
     <h2>When it says <em>&ldquo;I don't know,&rdquo;</em> listen.</h2>
     <p class="lede"><code class="mono" style="font-size:15px">escalated: true</code> is not an error &mdash; it is the model doing its job. It means confidence fell below the model's threshold, so the answer is a guess you should not act on.</p>
-    <div class="warn"><strong>The rule:</strong> never auto-act on an escalated decision. Route it to a human reviewer (or a stronger model). Acting on an escalated decision as if it were confident defeats the purpose of the flag &mdash; it exists precisely so your system knows when to ask a person.</div>
+    <div class="warn"><strong>The rule:</strong> never auto-act on an escalated decision. Route it to the larger model. Acting on an escalated decision as if it were confident defeats the purpose of the flag &mdash; it exists precisely so your system knows when to ask a person.</div>
     <p class="body">The pattern looks like this: confident decisions flow straight through; escalations land in a review queue. Every resolved escalation is a labeled example &mdash; the same examples the learning loop trains on next week, so your escalation rate should fall over time instead of compounding.</p>
   </section>
 
@@ -130,7 +130,7 @@ KEY = os.environ[<span class="s">"FRONESA_KEY"</span>]  <span class="c"># email 
 
 out = decide(<span class="s">"Free prizes, claim now!"</span>)
 <span class="k">if</span> out[<span class="s">"escalated"</span>]:
-    send_to_human_review(out)   <span class="c"># your queue — never auto-act here</span>
+    route_to_larger_model(out)   <span class="c"># never auto-act here</span>
 <span class="k">else</span>:
     act_on(out[<span class="s">"decision"</span>], out[<span class="s">"confidence"</span>])</pre>
     </div>
