@@ -50,7 +50,7 @@
       <li>Circumvent rate limits by rotating keys, spoofing identity, or distributing load to evade the per-key cap.</li>
       <li>Run the API on <strong>high-stakes outcomes</strong> &mdash; medical, legal, credit, employment, or safety-critical decisions &mdash; <strong>without meaningful human review</strong> of each decision that matters. Our confidence scores are a guide, not a verdict.</li>
     </ul>
-    <div class="plain"><strong>Escalation is a feature, not a failure.</strong> When the API returns <code>escalated: true</code>, it is telling you it isn&rsquo;t sure. Routing escalated items to a human is the correct way to use us &mdash; ignoring the flag and auto-acting on low-confidence decisions is not.</div>
+    <div class="plain"><strong>Escalation is a feature, not a failure.</strong> When the API returns <code>escalated: true</code>, it is telling you it isn&rsquo;t sure. Routing escalated items to the larger model is the correct way to use us &mdash; ignoring the flag and auto-acting on low-confidence decisions is not.</div>
   </section>
 
   <section>
@@ -79,7 +79,7 @@
   <section>
     <h2>6. Liability, honestly limited</h2>
     <p>The API is provided <strong>&ldquo;as is,&rdquo;</strong> without warranties of any kind &mdash; including accuracy, reliability, or fitness for a particular purpose. A wrong decision is possible on any request; that&rsquo;s what the confidence score and the escalation flag are for.</p>
-    <p>To the extent permitted by law, we are not liable for indirect, incidental, or consequential damages &mdash; lost profits, lost data, or actions you took on our decisions. Our total liability is limited to <strong>what you paid us in the 12 months before the claim</strong> the amount paid in the 12 months before the claim (currently $0 during the free pilot).</p>
+    <p>To the extent permitted by law, we are not liable for indirect, incidental, or consequential damages &mdash; lost profits, lost data, or actions you took on our decisions. Our total liability is limited to <strong>what you paid us in the 12 months before the claim</strong> (currently $0 during the free pilot).</p>
   </section>
 
   <section>
