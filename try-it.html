@@ -3,38 +3,179 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fronesa — try the model</title>
-<meta name="description" content="Try Fronesa's decision API — a demo of the FD-1 decision model, or call the live /decide endpoint with your API key. Decisions, confidence, escalation.">
+<meta name="theme-color" content="#fbfaf7">
+<meta name="description" content="Try Fronesa's decision API — a demo of the v3 sentiment model, or call the live /decide endpoint with your API key. Decisions, confidence, escalation.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fronesa">
 <meta property="og:title" content="Fronesa — try the model">
-<meta property="og:description" content="Try Fronesa&#x27;s decision API — a demo of the FD-1 decision model, or call the live /decide endpoint with your API key. Decisions, confidence, escalation.">
+<meta property="og:description" content="Try Fronesa&#x27;s decision API — a demo of the v3 sentiment model, or call the live /decide endpoint with your API key. Decisions, confidence, escalation.">
 <meta property="og:url" content="https://fronesa.github.io/try-it.html">
+<link rel="canonical" href="https://fronesa.github.io/try-it.html">
 <meta property="og:image" content="https://fronesa.github.io/assets/og-fronesa.png">
 <meta name="twitter:card" content="summary">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/fdl.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Fronesa — try the model</title>
+<style>
+  /* Self-hosted Fraunces (latin, weights 500-600) — zero third-party requests */
+  @font-face{
+    font-family:'Fraunces';font-style:normal;font-weight:500 600;font-display:swap;
+    src:url('assets/fonts/fraunces-latin.woff2') format('woff2');
+  }
+  :root{
+    --paper:#fbfaf7;--ink:#16150f;--mut:#5c5a50;--faint:#6f6c60;
+    --line:#e3e0d5;--green:#0f5132;--green-soft:#e8f0ea;
+    --red:#b3352b;--amber:#8a5a00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);
+    padding:10px 18px;border-radius:0 0 8px 0;font-size:14px;font-weight:600;
+    text-decoration:none;z-index:100}
+  .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){.chip{transition:none}}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--paper);
+    color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 28px}
+  nav{border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .wordmark{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:600;
+    text-decoration:none;color:var(--ink)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{color:var(--mut);text-decoration:none;font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.talk{color:var(--green);font-weight:600;border:1px solid var(--green);
+    border-radius:7px;padding:7px 16px}
+  .nav-links a.talk:hover{background:var(--green);color:#fff}
+  a.here{color:var(--ink);font-weight:600}
+  .back{color:var(--mut);text-decoration:none;font-size:14px;font-weight:500}
+  .back:hover{color:var(--ink)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
+
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.015em;
+    font-size:clamp(36px,6vw,52px);line-height:1.1;margin:56px 0 14px}
+  h1 em{font-style:italic;color:var(--green)}
+  .sub{color:var(--mut);font-size:16.5px;max-width:560px}
+  .note{margin:28px 0 8px;padding:18px 22px;background:var(--green-soft);
+    border-radius:10px;font-size:14px;color:var(--mut);line-height:1.7}
+  .note strong{color:var(--ink)}
+
+  .group-label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--faint);margin:30px 0 4px}
+  .group-note{font-size:13px;color:var(--mut);margin:8px 0 0;max-width:560px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin:10px 0 8px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:100px;
+    padding:11px 18px;font-size:13.5px;color:var(--mut);cursor:pointer;font-family:inherit;
+    transition:border-color .2s,color .2s}
+  .chip:hover{border-color:var(--green);color:var(--ink)}
+  .chip.on{border-color:var(--green);color:var(--green);background:var(--green-soft);font-weight:600}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:34px;margin:30px 0;display:none}
+  .card.show{display:block}
+  .tweet{font-family:'Fraunces',Georgia,serif;font-size:21px;line-height:1.5;margin-bottom:24px}
+  .row{display:flex;gap:16px;align-items:baseline;margin:14px 0 4px;flex-wrap:wrap}
+  .pill{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;padding:6px 0;border-bottom:2px solid}
+  .neg{color:var(--red);border-color:var(--red)}
+  .neu{color:var(--mut);border-color:var(--faint)}
+  .pos{color:var(--green);border-color:var(--green)}
+  .conf{font-size:14px;color:var(--mut);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .confplain{font-size:13.5px;color:var(--mut);margin:2px 0 6px;max-width:520px}
+  .prow{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin-top:16px}
+  .bar{height:6px;background:var(--line);border-radius:4px;overflow:hidden;margin:8px 0 4px}
+  .bar i{display:block;height:100%}
+  .esc{border-radius:10px;padding:18px 22px;font-size:14.5px;margin-top:26px;line-height:1.7}
+  .esc.yes{background:#faf3e3;color:#6b4e0c;border:1px solid #e8d9ae}
+  .esc.no{background:var(--green-soft);color:var(--green);border:1px solid #cfe0d4}
+  .esc-head{font-weight:600;margin-bottom:6px}
+  .thr{font-size:12px;color:var(--faint);margin-top:20px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.04em}
+  .cta-row{margin:12px 0 8px}
+  .btn-solid{background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;
+    font-size:15px;border-radius:8px;padding:13px 28px;display:inline-block}
+  .btn-solid:hover{background:var(--green)}
+  footer{border-top:1px solid var(--line);padding:32px 0 48px;margin-top:56px}
+  footer .wrap{max-width:960px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  footer p{font-size:13px;color:var(--faint);margin:0}
+  footer .fl{display:flex;gap:22px;flex-wrap:wrap}
+  footer .fl a{font-size:13px;color:var(--faint);text-decoration:none}
+  footer .fl a:hover{color:var(--ink)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+  .live{background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:30px;margin:30px 0}
+  .live label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--faint);display:block;margin:0 0 8px}
+  .live textarea{width:100%;border:1px solid var(--line);border-radius:8px;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;color:var(--ink);
+    padding:14px 16px;line-height:1.6;resize:vertical;background:var(--paper)}
+  .live textarea:focus{outline:none;border-color:var(--green)}
+  .live-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .live-row input{flex:1;min-width:200px;border:1px solid var(--line);border-radius:8px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;padding:12px 16px;
+    background:var(--paper);color:var(--ink)}
+  .live-row input:focus{outline:none;border-color:var(--green)}
+  .btn-inline{background:var(--ink);color:var(--paper);border:none;border-radius:8px;
+    padding:12px 26px;font-size:14.5px;font-weight:600;cursor:pointer;font-family:inherit}
+  .btn-inline:hover{background:var(--green)}
+  .btn-inline:disabled{opacity:.55;cursor:default}
+  .live-note{font-size:12.5px;color:var(--faint);margin:10px 0 0}
+  .live-status{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;color:var(--mut);
+    margin:16px 0 0}
+  .live-status.err{color:var(--red)}
+  .live-result{border-top:1px solid var(--line);margin-top:18px;padding-top:18px}
+  .coldnote{font-size:13px;color:var(--mut);margin-top:12px;max-width:560px}
+
+  .wake{background:#faf3e3;border:1px solid #e8d9ae;border-radius:10px;
+    padding:20px 22px;margin-top:18px;color:#6b4e0c;font-size:14.5px;line-height:1.7}
+  .wake-head{font-weight:600;margin-bottom:8px;font-size:15.5px}
+  .wake p{margin:0 0 8px}
+  .wake strong{color:#4a3706}
+  .wake-meta{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:#755a16;margin:12px 0 0 !important}
+  .live a{color:var(--green);text-decoration:underline}
+  @media (max-width:560px){
+    nav .wrap{padding-top:10px;padding-bottom:10px}
+    .nav-links{gap:14px;overflow-x:auto;scrollbar-width:none;max-width:100%;
+      -webkit-mask-image:linear-gradient(90deg,#000 90%,transparent);
+      mask-image:linear-gradient(90deg,#000 90%,transparent)}
+    /* scroll affordance: scrollbar is hidden above; right-edge fade signals
+       more content when large text sizes push "Back" off-screen */
+    .nav-links::-webkit-scrollbar{display:none}
+    .nav-links a{white-space:nowrap;font-size:13px;padding:12px 0}
+    .nav-links a.talk{padding:12px 18px}
+    /* 320px widths (static check): .live-row input (min-width:200px) wraps, the
+       Decide button drops below it — layout holds; real-device screenshot
+       pending device-lab access */
+    footer .fl a{padding:12px 0}
+    h1{margin-top:28px}
+  }
+</style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="topbar"><div class="wrap"><a class="brandmark" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><a class="nl" href="/index.html">Home</a><a class="nl active" href="/try-it.html">Demo</a><a class="nl" href="/benchmarks.html">Benchmarks</a><a class="nl" href="/docs.html">Docs</a><a class="nl" href="/pricing.html">Pricing</a><a class="nl" href="/blog/">Blog</a><a class="nl" href="/about.html">About</a></div></header>
-<main class="wrap" id="main">
-  <div class="kicker">FD-1 &middot; Demo</div>
-  <h1>Try the <em>model.</em></h1>
-  <p class="lede">FD-1 is a decision model behind an API. Give it a text and a decision to make &mdash; a yes/no, a choice between options, a judgement call &mdash; and it answers with three things: a <strong>decision</strong>, a <strong>confidence</strong>, and an <strong>escalation flag</strong> on the calls it should not make alone. The examples below are genuine pre-computed FD-1 outputs &mdash; tap one and read the verdict the way the API returns it.</p>
 
-<div class="group-label">Clear calls &mdash; the model is sure</div>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav><div class="wrap">
+  <a class="wordmark" href="index.html">Fronesa</a>
+  <div class="nav-links">
+    <a href="benchmarks.html">All benchmarks &rarr;</a>
+    <a class="back" href="index.html" onclick="try{if(history.length<=1){location.href='index.html'}else{history.back()}}catch(e){location.href='index.html'}return false;">&larr; Back</a>
+  </div>
+</div></nav>
+
+<main class="wrap" id="main">
+  <h1>Try the <em>model.</em></h1>
+  <p class="sub">Tap any message to explore genuine pre-computed outputs from the FD-1 decision model (FD-1, trained by the compounding loop) &mdash; decision + confidence + escalation &mdash; while the live <span class="mono">/decide</span> endpoint serves the production spam-v1 model, which may return a different label set (spam/ham); per-model measured performance is documented in our lab notes &mdash; ask us for the full writeup.</p>
+  <div class="note"><strong>How to read this.</strong> Confidence is the model's self-reported certainty &mdash; 0.99 means &ldquo;I'm sure&rdquo;, 0.41 means &ldquo;I'm guessing&rdquo;. It is not a calibrated probability: well-calibrated on SMS-style inputs (ECE &asymp; 0.05), less reliable on phishing-style inputs (ECE &asymp; 0.21), and overconfident on sarcastic or adversarial text. Calls below the <strong>0.49 line</strong> are <strong>escalated</strong> &mdash; in the pilot flow, a human reviewer decides, and the reviewer's answer becomes training data. That's the loop.</div>
+
+  <div class="group-label">Clear calls &mdash; the model is sure</div>
   <div class="chips" id="chips-clear"></div>
 
-  <div class="group-label">Borderline &mdash; below the line, escalated to the larger model</div>
+  <div class="group-label">Borderline &mdash; below the line, escalated to a human</div>
   <div class="chips" id="chips-border"></div>
 
   <div class="group-label">Confident &mdash; and wrong</div>
   <div class="chips" id="chips-wrong"></div>
-  <p class="group-note">Sarcasm still fools it. Reviewers spot-check confident calls too &mdash; every correction becomes training data for the next version. These are 10 hand-picked examples &mdash; the measured rates are in &sect;02 below.</p>
+  <p class="group-note">Sarcasm still fools it. Reviewers spot-check confident calls too &mdash; every correction becomes training data for the next version. These are 10 hand-picked examples &mdash; measured performance figures are in our lab notes, available on request.</p>
 
   <div class="card" id="card" aria-live="polite">
     <div class="tweet" id="tweet"></div>
@@ -46,14 +187,10 @@
     <div class="thr">escalation threshold 0.49 &mdash; tuned once for a 15% budget, then fixed</div>
   </div>
 
-  <div class="note"><strong>How to read a verdict.</strong> <strong>Decision</strong> is the call itself &mdash; positive, negative, or neutral in these examples. <strong>Confidence</strong> is the model&rsquo;s self-reported certainty &mdash; 0.99 means &ldquo;I&rsquo;m sure&rdquo;, 0.41 means &ldquo;I&rsquo;m guessing&rdquo;. It is not a calibrated probability: well-calibrated on SMS-style inputs (ECE &asymp; 0.05), less reliable on phishing-style inputs (ECE &asymp; 0.21), and overconfident on sarcastic or adversarial text. <strong>Escalation</strong>: calls below the <strong>0.49 line</strong> are escalated &mdash; the larger model re-checks them, and its answer becomes training data. That&rsquo;s the loop.</div>
+  <div class="group-label">Live &mdash; call the real API</div>
+  <p class="group-note">Send your own text to the live <span class="mono">/decide</span> endpoint and get a real decision back. It needs your API key (write to <a href="mailto:surety.ai@proton.me">surety.ai@proton.me</a> for access). First request after idle can take up to ~90&thinsp;s &mdash; the page will tell you honestly instead of pretending it's broken.</p>
 
-  <section class="chapter">
-    <div class="secnum">01 &mdash; Live</div>
-    <h2 class="display-2">Call the real <em>API.</em></h2>
-    <p class="answer">Send your own text to the live <span class="mono">/decide</span> endpoint and get a real decision back. The endpoint serves the production spam model, so live answers come back as spam/ham &mdash; the examples above are FD-1 decision outputs, and the two are labelled where they appear. The live lane needs your API key (write to <a href="mailto:surety.ai@proton.me">surety.ai@proton.me</a> for access). First request after idle can take up to ~90&thinsp;s &mdash; the page will tell you honestly instead of pretending it&rsquo;s broken.</p>
-
-<div class="live" id="live">
+  <div class="live" id="live">
     <label for="live-text">Message to decide on</label>
     <textarea id="live-text" rows="3" placeholder="Absolutely loved it &mdash; best night ever!"></textarea>
     <div class="live-row">
@@ -69,85 +206,10 @@
     </div>
     <div class="live-result" id="live-result" hidden aria-live="polite"></div>
   </div>
-  </section>
-
-  <section class="chapter">
-    <div class="secnum">02 &mdash; Measured</div>
-    <h2 class="display-2">What the lab <em>measured.</em></h2>
-    <p class="answer">On entailment (MNLI), FD-1 is right 92.0% of the time, and its confidence there is close to honest &mdash; expected calibration error 0.057. On the harder multiple-choice panels it is right less often: 0.543 on AG News topics, 0.530 on BoolQ yes/no, 0.241 on MMLU. Its confidence is also less reliable there &mdash; calibration error reaches 0.516 on HellaSwag. The chart below is one series only: FD-1 accuracy per benchmark, the same measurement published on the benchmarks page.</p>
-    <div class="narrow">
-<svg viewBox="0 0 400 470" width="100%" role="img" aria-label="Bar chart of FD-1 accuracy across seven benchmarks: MNLI 0.920, AG News 0.543, BoolQ 0.530, HellaSwag 0.333, TruthfulQA 0.317, MMLU 0.241, Banking77 0.213. Dashed ticks mark chance baselines.">
-      <title>FD-1 accuracy per benchmark</title>
-      <g stroke="#EAE4D2" stroke-width="1">
-        <line x1="126" y1="8" x2="126" y2="446"/>
-        <line x1="189.5" y1="8" x2="189.5" y2="446"/>
-        <line x1="253" y1="8" x2="253" y2="446"/>
-        <line x1="316.5" y1="8" x2="316.5" y2="446"/>
-        <line x1="380" y1="8" x2="380" y2="446"/>
-      </g>
-      <g font-family="'JetBrains Mono',ui-monospace,monospace" font-size="10" fill="#8A8474" text-anchor="middle">
-        <text x="126" y="462">0</text><text x="189.5" y="462">.25</text><text x="253" y="462">.50</text><text x="316.5" y="462">.75</text><text x="380" y="462">1.0</text>
-      </g>
-      <!-- MNLI -->
-      <text x="118" y="34" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">MNLI</text>
-      <text x="118" y="51" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">entailment</text>
-      <rect x="126" y="24" width="233.7" height="22" fill="#0F5132"/>
-      <line x1="253" y1="20" x2="253" y2="60" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="365.7" y="40" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.920</text>
-      <!-- AG News -->
-      <text x="118" y="96" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">AG News</text>
-      <text x="118" y="113" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
-      <rect x="126" y="86" width="137.9" height="22" fill="#0F5132"/>
-      <line x1="189.5" y1="82" x2="189.5" y2="122" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="269.9" y="102" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.543</text>
-      <!-- BoolQ -->
-      <text x="118" y="158" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">BoolQ</text>
-      <text x="118" y="175" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">yes/no</text>
-      <rect x="126" y="148" width="134.6" height="22" fill="#0F5132"/>
-      <line x1="253" y1="144" x2="253" y2="184" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="266.6" y="164" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.530</text>
-      <!-- HellaSwag -->
-      <text x="118" y="220" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">HellaSwag</text>
-      <text x="118" y="237" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
-      <rect x="126" y="210" width="84.6" height="22" fill="#7A1F1A"/>
-      <line x1="189.5" y1="206" x2="189.5" y2="246" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="216.6" y="226" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.333</text>
-      <!-- TruthfulQA -->
-      <text x="118" y="282" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">TruthfulQA</text>
-      <text x="118" y="299" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
-      <rect x="126" y="272" width="80.5" height="22" fill="#7A1F1A"/>
-      <line x1="189.5" y1="268" x2="189.5" y2="308" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="212.5" y="288" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.317</text>
-      <!-- MMLU -->
-      <text x="118" y="344" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">MMLU</text>
-      <text x="118" y="361" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
-      <rect x="126" y="334" width="61.2" height="22" fill="#7A1F1A"/>
-      <line x1="189.5" y1="330" x2="189.5" y2="370" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="193.2" y="350" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.241</text>
-      <!-- Banking77 -->
-      <text x="118" y="406" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="14" font-weight="600" fill="#16150F">Banking77</text>
-      <text x="118" y="423" text-anchor="end" font-family="'Inter',-apple-system,sans-serif" font-size="10.5" fill="#8A8474">multiple-choice</text>
-      <rect x="126" y="396" width="54.1" height="22" fill="#7A1F1A"/>
-      <line x1="129.3" y1="392" x2="129.3" y2="432" stroke="#8A8474" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <text x="186.1" y="412" font-family="'JetBrains Mono',ui-monospace,monospace" font-size="12" fill="#16150F">0.213</text>
-    </svg>
-    </div>
-    <p class="caveat">Solid bar = FD-1 accuracy on that benchmark. Dashed tick = chance for that panel &mdash; the score guessing would average. Green &ge; 0.50. n = 300 per benchmark, MMLU n = 228.</p>
-    <p class="limit-note">These are lab numbers on public panels; they describe the model on those tasks, not on your traffic. Accuracy and calibration vary by task, so read confidence per task &mdash; not as a universal probability.</p>
-    <div class="footnotes">
-      <p>1. Measured in our lab on public benchmark data: FD-1, Tier-1, seed 7. ECE is the measured uncalibrated value (T = 1.0). Full accuracy and calibration tables: <a href="/benchmarks.html">Benchmarks</a>.</p>
-      <p>2. The examples at the top are hand-picked to show clear, borderline, and wrong calls &mdash; they illustrate the output format, not the measured rates. Per-model measured performance is on the benchmarks page.</p>
-      <p>3. The 0.49 escalation threshold shown on the verdict card was tuned once for a 15% escalation budget for the larger model, then fixed.</p>
-    </div>
-  </section>
 
   <div class="cta-row"><a class="btn-solid" href="mailto:surety.ai@proton.me">Talk to us</a></div>
 
 <script>
-function escHtml(s) {
-  return String(s).replace(/[&<>"']/g, c =>
-    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
 const DATA = [
  {"group":"clear","text":"Absolutely loved the concert last night, best show ever!","decision":"positive","confidence":0.993,"probs":{"negative":0.002,"neutral":0.005,"positive":0.993},"escalated":false},
  {"group":"clear","text":"I hate this movie, complete waste of time and money","decision":"negative","confidence":0.93,"probs":{"negative":0.93,"neutral":0.049,"positive":0.021},"escalated":false},
@@ -179,7 +241,7 @@ function gloss(c) {
   if (c >= 0.9) return 'the model is very sure of this call';
   if (c >= 0.7) return 'the model is fairly sure of this call';
   if (c >= 0.49) return 'the model is only somewhat sure \u2014 close to the line';
-  return 'the model is basically guessing \u2014 that\u2019s why the larger model steps in';
+  return 'the model is basically guessing \u2014 that\u2019s why a human steps in';
 }
 function show(i) {
   chipEls.forEach(c => { c.classList.remove('on'); c.setAttribute('aria-pressed', 'false'); });
@@ -194,14 +256,14 @@ function show(i) {
   document.getElementById('confplain').textContent = 'In plain English: ' + gloss(d.confidence) + '.';
   const colors = {negative: '#b3352b', neutral: '#6f6c60', positive: '#0f5132'};
   document.getElementById('probs').innerHTML = Object.entries(d.probs).map(([k, v]) =>
-    `<div class="prow"><span>${escHtml(k)}</span><span>${v.toFixed(3)}</span></div>
+    `<div class="prow"><span>${k}</span><span>${v.toFixed(3)}</span></div>
      <div class="bar"><i style="width:${(v * 100).toFixed(0)}%;background:${colors[k]}"></i></div>`).join('');
   const esc = document.getElementById('esc');
   esc.className = 'esc ' + (d.escalated ? 'yes' : 'no');
   esc.innerHTML = d.escalated
-    ? '<div class="esc-head">Escalated \u2014 the larger model takes a second look.</div>Confidence ' + d.confidence.toFixed(3) +
-      ' is below the 0.49 line, so the fast model doesn\u2019t settle this call alone. The larger model re-checks it, and its answer becomes training data for the next version.'
-    : '<div class="esc-head">Decided automatically \u2014 by the fast model.</div>Confidence ' + d.confidence.toFixed(3) +
+    ? '<div class="esc-head">Escalated \u2014 in the pilot flow, a human decides.</div>Confidence ' + d.confidence.toFixed(3) +
+      ' is below the 0.49 line, so the model doesn\u2019t make this call. In the pilot flow, a reviewer decides, and their answer becomes training data for the next version.'
+    : '<div class="esc-head">Decided automatically \u2014 no human needed.</div>Confidence ' + d.confidence.toFixed(3) +
       ' is above the 0.49 line, so the model makes the call on its own.';
   const wrong = document.getElementById('wrongnote');
   if (d.group === 'wrong') {
@@ -234,13 +296,18 @@ if (DATA.length) show(0);
     status.className = 'live-status' + (isErr ? ' err' : '');
   }
 
+  function escHtml(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
   function renderDecision(d, ms) {
     const s = (ms / 1000).toFixed(1);
     const pillClass = {positive:'pos', negative:'neg', neutral:'neu', spam:'neg', ham:'pos'};
     const pill = pillClass[d.decision] || 'neu';
     const escBox = d.escalated
-      ? '<div class="esc-head">Escalated \u2014 the larger model takes a second look.</div>The fast model doesn\u2019t make this call on its own; the larger model re-checks it.'
-      : '<div class="esc-head">Decided automatically \u2014 by the fast model.</div>';
+      ? '<div class="esc-head">Escalated \u2014 in the pilot flow, a human decides.</div>The model doesn\u2019t make this call on its own; a pilot reviewer does.'
+      : '<div class="esc-head">Decided automatically \u2014 no human needed.</div>';
     let coldNote = '';
     if (ms > COLD_START_CLAIM_S * 1000) {
       coldNote = '<p class="coldnote">This request took ' + s + '&thinsp;s &mdash; it hit a cold start ' +
@@ -337,6 +404,11 @@ if (DATA.length) show(0);
 })();
 </script>
 </main>
-<footer class="sitefoot"><div class="wrap"><a class="fbrand" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><div class="flinks"><a href="/try-it.html">Demo</a><a href="/benchmarks.html">Benchmarks</a><a href="/docs.html">Docs</a><a href="/api-docs.html">API reference</a><a href="/pricing.html">Pricing</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div><p class="fine">Fronesa &mdash; decisions that learn. &copy; 2026.<br>Every number on this site is measured; nothing is promised.</p></div></footer>
+
+<footer><div class="wrap">
+  <p>Fronesa &mdash; decisions that learn. &copy; 2026</p>
+  <div class="fl"><a href="index.html">Home</a><a href="try-it.html">Demo</a><a href="getting-started.html">Getting started</a><a href="api-docs.html">API reference</a><a href="sdk-docs.html">SDK docs</a><a href="docs.html">Docs</a><a href="faq.html">FAQ</a><a href="changelog.html">Changelog</a><a href="security.html">Security</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="data-handling.html">Data handling</a><a href="mailto:surety.ai@proton.me">Contact</a></div>
+</div></footer>
+
 </body>
 </html>

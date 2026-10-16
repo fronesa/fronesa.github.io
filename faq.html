@@ -12,16 +12,113 @@
 <meta property="og:url" content="https://fronesa.github.io/faq.html">
 <meta property="og:image" content="https://fronesa.github.io/assets/og-fronesa.png">
 <meta name="twitter:card" content="summary">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<!-- DRAFT — not published -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/fdl.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbfaf7;
+    --ink:#16150f;
+    --mut:#5c5a50;
+    --faint:#8a877a;
+    --line:#e3e0d5;
+    --green:#0f5132;
+    --green-soft:#e8f0ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:#d9e8dd}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+  .serif{font-family:'Fraunces',Georgia,serif}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  nav{border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;max-width:960px}
+  .wordmark{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:600;
+    text-decoration:none;color:var(--ink);letter-spacing:-.01em}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{color:var(--mut);text-decoration:none;font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a.talk{color:var(--green);font-weight:600;border:1px solid var(--green);
+    border-radius:7px;padding:7px 16px}
+  .nav-links a.talk:hover{background:var(--green);color:#fff}
+
+  .hero{padding:88px 0 40px}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--green);margin-bottom:28px}
+  .hero h1{font-family:'Fraunces',Georgia,serif;font-weight:500;
+    font-size:clamp(42px,7vw,68px);line-height:1.08;letter-spacing:-.015em;margin-bottom:20px}
+  .hero h1 em{font-style:italic;color:var(--green)}
+  .hero p{font-size:17px;color:var(--mut);max-width:600px;line-height:1.75}
+  .updated{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--faint);
+    letter-spacing:.08em;margin-top:24px}
+
+  section{padding:44px 0;border-top:1px solid var(--line)}
+  section:first-of-type{margin-top:24px}
+  h2{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.015em;
+    font-size:clamp(24px,3.5vw,32px);line-height:1.2;margin-bottom:8px}
+  .group-sub{color:var(--faint);font-size:14.5px;margin-bottom:22px}
+  p{color:var(--mut);font-size:15.5px;line-height:1.75;margin-bottom:14px;max-width:640px}
+  p strong, li strong{color:var(--ink);font-weight:600}
+  ul{margin:0 0 14px 22px;color:var(--mut);font-size:15.5px;line-height:1.75}
+  li{margin-bottom:8px}
+  a{color:var(--green)}
+  code{font-family:'JetBrains Mono',monospace;font-size:.88em;background:var(--green-soft);
+    padding:1px 6px;border-radius:4px}
+
+  details{border:1px solid var(--line);border-radius:8px;background:#fff;
+    margin-bottom:12px;overflow:hidden}
+  details summary{cursor:pointer;list-style:none;padding:16px 20px;
+    font-weight:600;font-size:15.5px;color:var(--ink);display:flex;
+    justify-content:space-between;align-items:center;gap:16px}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-family:'JetBrains Mono',monospace;
+    color:var(--green);font-size:18px;flex-shrink:0;transition:transform .15s}
+  details[open] summary::after{content:"–"}
+  details .answer{padding:0 20px 18px;color:var(--mut);font-size:15px;line-height:1.75}
+  details .answer p{margin-bottom:12px}
+  details .answer p:last-child{margin-bottom:0}
+
+  .plain{margin-top:32px;padding:18px 22px;border-left:3px solid var(--green);
+    background:#fff;font-size:14.5px;color:var(--mut);line-height:1.7}
+  .plain strong{color:var(--ink)}
+
+  footer{border-top:1px solid var(--line);padding:32px 0 48px;margin-top:56px}
+  footer .wrap{max-width:960px;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:14px}
+  footer p{font-size:13px;color:var(--faint);margin:0}
+  footer .fl{display:flex;gap:22px;flex-wrap:wrap}
+  footer .fl a{font-size:13px;color:var(--faint);text-decoration:none}
+  footer .fl a:hover{color:var(--ink)}
+
+  @media(max-width:640px){
+    .hero{padding:64px 0 32px}
+    section{padding:36px 0}
+    details summary{padding:14px 16px;font-size:15px}
+    details .answer{padding:0 16px 16px}
+  }
+</style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="topbar"><div class="wrap"><a class="brandmark" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><a class="nl" href="/index.html">Home</a><a class="nl" href="/try-it.html">Demo</a><a class="nl" href="/benchmarks.html">Benchmarks</a><a class="nl" href="/docs.html">Docs</a><a class="nl" href="/pricing.html">Pricing</a><a class="nl" href="/blog/">Blog</a><a class="nl" href="/about.html">About</a></div></header>
-<main id="main">
+
+<nav><div class="wrap">
+  <a class="wordmark" href="index.html">Fronesa</a>
+  <div class="nav-links">
+    <a href="try-it.html">Demo</a>
+    <a href="benchmarks.html">Benchmarks</a>
+    <a href="docs.html">Docs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a class="talk" href="getting-started.html">Get started</a>
+  </div>
+</div></nav>
+
 <div class="wrap">
   <div class="hero">
     <div class="kicker">FAQ</div>
@@ -34,45 +131,45 @@
     <h2>Product</h2>
     <p class="group-sub">What Fronesa is, and what it isn't.</p>
 
-    <details class="acc">
+    <details>
       <summary>What does Fronesa do?</summary>
       <div class="answer">
-        <p>Fronesa is a decision API. You send it a piece of text; it returns a decision (for example <code>spam</code> or <code>ham</code>), a confidence score between 0 and 1, and an <strong>escalation flag</strong>. When the flag is set, the model is explicitly saying "I don't know" — the case goes to the larger model for a second pass — it is not acted on automatically.</p>
+        <p>Fronesa is a decision API. You send it a piece of text; it returns a decision (for example <code>spam</code> or <code>ham</code>), a confidence score between 0 and 1, and an <strong>escalation flag</strong>. When the flag is set, the model is explicitly saying "I don't know" — you're expected to route that case to a human reviewer, not act on it automatically.</p>
         <p>The product's thesis is <strong>decisions that learn</strong>: your reviewers' corrections feed a retraining loop, so the model improves on your data over time. See the <a href="index.html#how">Method</a> section for the full picture.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>How is this different from a plain text classifier?</summary>
       <div class="answer">
         <p>Three things a raw classifier doesn't give you:</p>
         <ul>
-          <li><strong>An escalation contract.</strong> Every response carries an <code>escalated</code> boolean. Below the confidence threshold, we don't guess — we hand the decision to a larger model for a second pass. That contract is documented in the <a href="sdk-docs.html">API reference</a>, not buried in a blog post.</li>
+          <li><strong>An escalation contract.</strong> Every response carries an <code>escalated</code> boolean. Below the confidence threshold, we don't guess — we hand the decision to your humans. That contract is documented in the <a href="sdk-docs.html">API reference</a>, not buried in a blog post.</li>
           <li><strong>A learning loop.</strong> Reviewer corrections submitted through <code>POST /review</code> accumulate in a ledger; once 50 new labels exist, a retraining candidate is built and promoted only if it beats the current model on a held-out set. Details in our <a href="changelog.html">changelog</a> as the loop ships.</li>
           <li><strong>An audit trail.</strong> Every response carries a model <code>version</code> and every request a request ID, so you can reconstruct exactly what the API said and why.</li>
         </ul>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What languages are supported?</summary>
       <div class="answer">
         <p><strong>English.</strong> The production model is trained on English text; other languages are not supported yet. Multilingual support is on the roadmap but has no date.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What does "escalated" mean, exactly?</summary>
       <div class="answer">
-        <p>It means the model's confidence fell below its escalation threshold — the model is telling you it isn't sure. The contract is simple: <strong>do not auto-act on escalated decisions</strong>. They are re-checked by the larger model, and you can optionally send the corrected verdict back through <code>POST /review</code> so the loop learns from it.</p>
+        <p>It means the model's confidence fell below its escalation threshold — the model is telling you it isn't sure. The contract is simple: <strong>do not auto-act on escalated decisions</strong>. Route them to human review (or a stronger model), and optionally send the reviewer's verdict back through <code>POST /review</code> so the loop learns from it.</p>
         <p>Error items in batch responses are also marked escalated — same rule applies.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What kinds of decisions can the API make?</summary>
       <div class="answer">
-        <p>Today: <strong>yes/no, multiple choice, and scored decisions</strong> on English text. Spam detection is one demo vertical. The decision vocabulary is model-specific and will grow as we ship new models — each response tells you which model version produced it, so you'll always know what you're getting.</p>
+        <p>Today: <strong>spam vs. ham</strong> on English text. The decision vocabulary is model-specific and will grow as we ship new models — each response tells you which model version produced it, so you'll always know what you're getting.</p>
       </div>
     </details>
   </section>
@@ -81,7 +178,7 @@
     <h2>Technical</h2>
     <p class="group-sub">Integration details, verified against our API spec.</p>
 
-    <details class="acc">
+    <details>
       <summary>How do I authenticate?</summary>
       <div class="answer">
         <p>With a <strong>Bearer API key</strong> in the <code>Authorization</code> header:</p>
@@ -90,7 +187,7 @@
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What are the rate limits?</summary>
       <div class="answer">
         <p><strong>100 requests per minute per key</strong> on <code>/decide</code> and <code>/decide/batch</code>. Exceeding it returns <code>429</code> with a <code>Retry-After</code> header telling you how long to wait.</p>
@@ -98,7 +195,7 @@
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>How fast is it?</summary>
       <div class="answer">
         <p>About <strong>~2 ms per decision on a warm container</strong> (server-measured; a 100-text batch runs in roughly 4–5 ms end to end). These are lab measurements on our infrastructure, not a guaranteed SLA — see below.</p>
@@ -106,28 +203,28 @@
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What are cold starts — why is the first request slow?</summary>
       <div class="answer">
         <p>The API runs on free-tier hosting, which puts the container to sleep after about 15 idle minutes. The first request after that has to boot the whole stack — up to ~90 seconds. Subsequent requests answer in ~0.1 s until the next idle period. Nothing is broken when this happens; it's the documented behavior of the free tier. If your use case can't tolerate a slow first request, warm the service with an unauthenticated <code>GET /health</code> call before you need it.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>Do you offer an SLA?</summary>
       <div class="answer">
         <p><strong>No.</strong> We don't promise uptime or latency targets today — the API runs on free-tier hosting, and it would be dishonest to sell guarantees on infrastructure we don't control. If SLAs matter to you, tell us; it's one of the things paid hosting would unlock.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What happens when the API escalates — do I get notified?</summary>
       <div class="answer">
         <p>The escalation flag comes back <strong>in the API response itself</strong> — your code checks <code>escalated</code> and routes accordingly. Push notifications (webhooks) for escalated items are <strong>on the roadmap but not shipped yet</strong>.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>Is there an SDK?</summary>
       <div class="answer">
         <p>Yes — a <strong>Python SDK</strong> (<code>fronesa</code>) with sync and async clients, retries with backoff, and a typed exception hierarchy. It's currently in pre-release while we finish publishing it to PyPI; the <a href="sdk-docs.html">SDK docs</a> page tracks its status honestly. REST works with any language today — see <a href="getting-started.html">Getting started</a>.</p>
@@ -139,7 +236,7 @@
     <h2>Pricing</h2>
     <p class="group-sub">What things cost, and what counts.</p>
 
-    <details class="acc">
+    <details>
       <summary>How am I billed?</summary>
       <div class="answer">
         <p>Per <strong>decision</strong>, in monthly tiers. Current plan (see the <a href="pricing.html">pricing page</a>):</p>
@@ -153,21 +250,21 @@
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What counts as a decision?</summary>
       <div class="answer">
         <p>One <code>/decide</code> call = one decision. One <code>/decide/batch</code> call with N texts = N decisions. Rejected calls (<code>401</code>, <code>429</code>) are <strong>never billed</strong>. Escalated decisions count the same as confident ones — the model still did the work.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What are the free tier limits?</summary>
       <div class="answer">
         <p>Sandbox gives you <strong>10,000 decisions per month</strong>, one model version, and community support. No credit card, no expiry — but rate limits still apply (100 requests/minute per key).</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>Can I cancel?</summary>
       <div class="answer">
         <p>Growth and Scale are <strong>month-to-month</strong> — cancel anytime, no lock-in. Enterprise plans are annual by negotiation.</p>
@@ -179,7 +276,7 @@
     <h2>Security &amp; privacy</h2>
     <p class="group-sub">What we do with your data, and what we don't.</p>
 
-    <details class="acc">
+    <details>
       <summary>Do you store the texts I send?</summary>
       <div class="answer">
         <p><strong>No.</strong> API request logs record metadata only — timestamp, endpoint, status, latency, and counts. They never contain your message contents or your raw API key (keys are stored as one-way hashes). Raw request logs are kept 30 days; aggregated daily summaries are kept 12 months.</p>
@@ -187,28 +284,28 @@
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>Do you train your models on my data?</summary>
       <div class="answer">
         <p><strong>Never without your written consent.</strong> The learning loop only trains on review decisions you explicitly submit through <code>POST /review</code> — that endpoint is the opt-in path. Your ordinary <code>/decide</code> traffic is never used for training.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>Where is data processed?</summary>
       <div class="answer">
         <p>On our hosted API infrastructure (currently cloud hosting; the exact region isn't something we've published yet — ask us if it matters for your compliance review). We don't offer regional data residency today — if that's a requirement for you, say so; it's on the Enterprise roadmap.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>What certifications do you hold?</summary>
       <div class="answer">
         <p><strong>None yet.</strong> No SOC 2, no ISO 27001, no independent penetration test, no bug bounty. Our <a href="security.html">security page</a> documents what we actually do (key handling, fail-closed auth, error hygiene) instead of implying assurances we haven't earned.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>How do I report a vulnerability?</summary>
       <div class="answer">
         <p>Email <a href="mailto:surety.ai@proton.me">surety.ai@proton.me</a> with the details. We'll acknowledge within two business days and keep you posted on the fix. Please don't publish the details before we've had a chance to patch.</p>
@@ -220,21 +317,21 @@
     <h2>Company</h2>
     <p class="group-sub">Who's behind Fronesa.</p>
 
-    <details class="acc">
+    <details>
       <summary>Who builds Fronesa?</summary>
       <div class="answer">
         <p>Fronesa is built by a small independent team working on it full-time. We're early — no funding announcements, no employee count to brag about, just the product and its measured numbers.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>Are you a registered company?</summary>
       <div class="answer">
         <p><strong>Not yet.</strong> We're operating as an independent project while we validate with design partners; formal entity setup comes before we sign commercial contracts. That means today we can run free pilots, but we can't invoice or sign paid agreements yet.</p>
       </div>
     </details>
 
-    <details class="acc">
+    <details>
       <summary>How do I contact you?</summary>
       <div class="answer">
         <p><a href="mailto:surety.ai@proton.me">surety.ai@proton.me</a> — read by a human, answered within two business days. For pilot or partnership conversations, tell us about your review queue and we'll tell you honestly whether we're a fit.</p>
@@ -249,7 +346,11 @@
   </div>
 
 </div>
-</main>
-<footer class="sitefoot"><div class="wrap"><a class="fbrand" href="/index.html">Fronesa<span class="sq">&#9632;</span></a><div class="flinks"><a href="/try-it.html">Demo</a><a href="/benchmarks.html">Benchmarks</a><a href="/docs.html">Docs</a><a href="/api-docs.html">API reference</a><a href="/pricing.html">Pricing</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div><p class="fine">Fronesa &mdash; decisions that learn. &copy; 2026.<br>Every number on this site is measured; nothing is promised.</p></div></footer>
+
+<footer><div class="wrap">
+  <p>Fronesa &mdash; decisions that learn. &copy; 2026</p>
+  <div class="fl"><a href="index.html">Home</a><a href="try-it.html">Demo</a><a href="getting-started.html">Getting started</a><a href="api-docs.html">API reference</a><a href="sdk-docs.html">SDK docs</a><a href="docs.html">Docs</a><a href="faq.html">FAQ</a><a href="changelog.html">Changelog</a><a href="security.html">Security</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="data-handling.html">Data handling</a><a href="mailto:surety.ai@proton.me">Contact</a></div>
+</div></footer>
+
 </body>
 </html>
